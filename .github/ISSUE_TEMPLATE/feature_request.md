@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for meme game 2
+about: Suggest an idea for Meme Game
 title: "[FEATURE] <Enter Title Here>"
 labels: enhancement
 assignees: ''
