@@ -1,6 +1,6 @@
 # Ye Olde Meme Game 2 Alpha
 
-Welcome to the public repository for downloading alpha builds of Ye Olde Meme Game 2, and reporting and tracking bugs.
+Welcome to the public repository for downloading alpha builds of Ye Olde Meme Game 2, reporting bugs, and submitting feature requests
 
 # Report bugs [here](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Alpha/issues)
 
