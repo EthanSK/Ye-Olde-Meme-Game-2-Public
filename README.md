@@ -7,3 +7,12 @@ Welcome to the public repository for downloading alpha builds of Ye Olde Meme Ga
 # Download the alpha [here](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Alpha/releases)
 
 ![image](https://user-images.githubusercontent.com/13756744/205411529-3c0858cf-3bb8-4e4d-a1b2-8e06467dcaef.png)
+
+
+## Download instructions
+
+### Windows
+
+1. Download the Windows Zip in in the latest release linked above
+2. Extract the downloaded Zip
+3. Run the Ye Olde Meme Game 2 Application that's in the extracted folder
