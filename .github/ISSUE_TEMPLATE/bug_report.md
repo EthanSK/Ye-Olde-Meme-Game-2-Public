@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Help me fix Meme Game <3
-title: "[BUG] XXX"
+title: "[BUG] <Enter Title Here>"
 labels: ''
 assignees: EthanSK
 
