@@ -16,3 +16,10 @@ Welcome to the public repository for downloading alpha builds of Ye Olde Meme Ga
 1. Download the Windows Zip in in the latest release linked above
 2. Extract the downloaded Zip
 3. Run the Ye Olde Meme Game 2 Application that's in the extracted folder
+
+
+### MacOS
+
+1. Download the Mac Zip in in the latest release linked above
+2. Extract the downloaded Zip
+3. Right click the Ye Olde Meme Game 2 app and click open. (If this doesn't work, you may need to allow access in system preferences > security & privacy)
