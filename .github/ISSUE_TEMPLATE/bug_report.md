@@ -8,14 +8,10 @@ assignees: EthanSK
 ---
 
 **Describe the bug**
-What is the bug
+What is the bug (and LEVEL ID IF POSSIBLE)
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
 
 **Expected behavior**
 What you expected to happen.
