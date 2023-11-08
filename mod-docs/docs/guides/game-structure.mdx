@@ -1,0 +1,57 @@
+import DocsImage from "@site/src/components/DocsImage";
+
+# Game Structure
+
+## Unity's Structure
+
+First, a little bit about how the game engine works.
+
+In Unity, everything in the scene is a `GameObject`. These GameObjects have a bunch of `Components` that give it a specific behaviour, like movement, collisions, attacking, etc.
+
+A `Component` is defined by a C# class. A class is basically a collection of data (`member variables`), and functions (`member methods`) that acts on and modifies the data. So for example, in the [basic example](/docs/getting-started/basic-example), you saw the `gravityScale` member variable of the `Rigidbody2D` Component being used.
+
+In the Unity Editor UI, here's what it would look like to set the value of the `gravityScale` member variable on the `RigidBody2D` Component attached to the `Player` GameObject.
+
+<DocsImage
+  src={require("./img/rigidbody on player example.png").default}
+  width={800}
+/>
+
+<br />
+
+And then, an example of a `method` you might call (in C#) on this `RigidBody2D` Component could be:
+
+```csharp
+playerRigidbody.AddForce(new Vector2(69, 420))
+```
+
+`GameObjects` can be nested under each other as children, so for example there might be a `Right Leg` child GameObject is under the root `Player` GameObject:
+
+<DocsImage
+  src={require("./img/unity gameobject hierarchy example.png").default}
+  width={400}
+/>
+
+Which means the `Right Leg` position, rotation, and size will be based on the `Player` parent.
+
+That's pretty much it for the fundamentals of how Unity works.
+
+## Meme Game Structure
+
+OK, so that's Unity. But how about Meme Game? Well, Ye Olde Meme Game 2 basically adds a thin layer on top of Unity. And that layer is `MemeItems`.
+
+In your level that you build, there's a a bunch of `MemeItems` to choose from and place around, e.g. `Memeorang Man`, `Ohio`, `John Xina`, `Stonks`.
+
+Whenever you create a `ModScript`, it will be added to a `MemeItem` that's placed in your level.
+
+Each `MemeItem` in your level is made of a `root` GameObject, and potentially some `child` GameObjects.
+
+And that's kinda it. Just so you know, behind the scenes, each `MemeItem` has a `MemeItem` Component that I made, as well as some other specific Components that causes the `MemeItem` to behave like it does, but you'll figure all that out by playing around.
+
+## Conclusion
+
+So, the way the ModScript system glues `Unity` and `MemeItems`together is by letting you access any `MemeItem`in the level, get any parent or child `GameObject`on that `MemeItem`, then get any `Component`on that `GameObject`. Now you can interact with any member variable or method on that `Component`, reading or writing its data, calling methods, reacting to events, and more.
+
+<br />
+
+Now with that said, let's take a look at the API Reference, which should help you visualize all this better.

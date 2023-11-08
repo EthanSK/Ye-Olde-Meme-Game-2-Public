@@ -1,0 +1,52 @@
+import DocsImage from "@site/src/components/DocsImage";
+
+# Basic Example
+
+I'll go through a quick walkthrough to get you familiar with the end-to-end flow of ModScripting.
+
+## Changing Memeorang Man's Gravity
+
+1. First, open the Level Builder, and open the level options panel:
+
+   <DocsImage src={require("./img/level options.png").default} width={400} />
+
+2. Enable experimental features:
+
+   <DocsImage
+     src={require("./img/experimental features enable.png").default}
+     width={500}
+   />
+
+3. Exit the level options panel, and find and click on Memeorang Man. Then click the blue script button:
+
+   <DocsImage
+     src={require("./img/memeorang man modscript button.png").default}
+     width={600}
+   />
+
+4. Create a new ModScript, and you'll see something like this:
+
+   <DocsImage src={require("./img/empty editor.png").default} width={800} />
+
+5. Open the API Reference, and find the `gravityScale` field of the `Player`'s `Rigidbody2D` component:
+
+   <DocsImage
+     src={require("./img/gravity scale api reference.png").default}
+     width={900}
+   />
+
+6. Click the `Copy Example` button:
+
+   <DocsImage
+     src={require("./img/copy example button.png").default}
+     width={400}
+   />
+
+7. Paste the example into the editor, and add the line `memeorangManRigidbody2D.gravityScale = 0.069` at the end to change the gravity:
+
+   <DocsImage
+     src={require("./img/editor gravity example.png").default}
+     width={1200}
+   />
+
+8. Now exit the ModScript panel, and enter play mode. You should see low gravity while jumping with Memeorang Man. Congratulations.

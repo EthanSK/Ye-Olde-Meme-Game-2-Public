@@ -1,0 +1,86 @@
+import DocsImage from "@site/src/components/DocsImage";
+
+# Common Pitfalls
+
+Here are some common issues you may run in to, or things you may forget to do.
+
+## Not testing in "Play Created Level"
+
+It is of utmost importance that you test your level in "Play Created Level", which is how the end user will be playing your level. The environment is different to the Level Builder, so there could very likely be things you didn't consider that don't work outside the Level Builder. At the end of the day, you are responsible for the quality of your modded level, so don't waste your time building crap.
+
+## Not keeping backups
+
+Keeping backups of your level at regular intervals is very important unless you want to lose all your hard work. You can export a level directly from the Level Builder menu by pressing this button:
+
+<DocsImage
+  src={require("./img/exit or publish button.png").default}
+  width={100}
+/>
+
+### Git repo
+
+You should even set Git repo to backup & keep track of changes to your level files.
+
+Just set up the git repo in the `<...start of Application persistent data path>/ETGgames/Ye Olde Meme Game 2/Levels/UserEditedLevels`. Find out what the Application persistent data path is [here](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html)
+
+and only track the desired level `.meme` files with a [.gitignore](https://git-scm.com/docs/gitignore) file that looks something like this:
+
+```
+# Ignore everything
+*
+
+# But not these files...
+!lvl_2a7b3f30-6aec-41d8-9904-7168da55da70.meme
+!lvl_5bd69420-c6f9-4c22-a220-e8119dbce6ef.meme
+# ...the rest of your files you care about
+```
+
+You may have open a few `.meme` files to see which one matches the one you're working on, the level metadata is at the top.
+
+The level file can be found in the
+
+## Not keeping your code structure clean and maintainable
+
+It's very easy to end up writing spaghetti code, and code that's hard to keep track of. While this isn't a coding tutorial, I will say this:
+
+- Name everything nice and clearly so it explains the purpose of itself in the name
+- Try and make reusable functions so you avoid repetition, make the code more readable, and only have to change things in one place
+- Split your code into multiple ModScripts to keep things organised for youself when coming back to it
+- Use comments with `--` to explain what you code is doing, especially if it's not obvious
+- idk go watch some yt tuts or smth
+
+## Forgetting to register types
+
+It's very easy to forget to [registerType](/docs/guides/types) before trying to access a member of that type. Make sure you always do this, and try to do so in every ModScript instead of relying on some type that was `registerType`d (globally) in another script.
+
+## Not thinking about performance
+
+It's easy to not think about [performance](/docs/guides/performance) when writing scripts, and it's even easier to accidentally have a terribly perfoming level on other players' devices. Make sure you have considered everything in the performance section thoroughly.
+
+Do you want people to dislike your level and give you a bad ranking on your user profile page?
+
+## Not approaching debugging methodically
+
+Coding can get hard sometimes. Debugging can be a pain, but it can also be fun (yes, I know what you're thinking).
+
+To make it more pleasant experience, you should used the `print` and `printTable` helper functions to log anything you're not sure about to the console. This is how you debug. Get used to it.
+
+## Not asking ChatGPT for help
+
+Despite the mockery of ClosedAI in Campaign, [ChatGPT](https://chat.openai.com/) will probably be your best bet for helping you write your ModScripts. I strongly recommend ChatGPT Plus, it is _significantly_ better than the free one.
+
+Now while Ye Olde Meme Game 2 is still in the early days, ChatGPT probably hasn't been trained on this documentation, or any information about the game. So you should copy and paste the documentation page you're dealing with into ChatGPT, and then give it your code or specific problem.
+
+But also, ChatGPT has been trained very well on Unity and C#, and even MoonSharp, so questions related to that should be answered very well without needing more information.
+
+## Not asking the community for help
+
+The [community](/docs/guides/community) will also be a very useful place to ask for help, mostly on the [Discord](https://discord.com/invite/g5X4MbKx3A) and [Reddit](https://www.reddit.com/r/YeOldeMemeGame2/), but also [Stack Overflow](https://stackoverflow.com/questions/tagged/ye-olde-meme-game-2) might be useful, especially as the game grows in popularity.
+
+## Not reading error messages properly
+
+As a n00b programmmer, it's very tempting to ignore error messages like I once did. This is just plain stupidity. Read the [error messages](/docs/guides/error-handling#error-messages) and spare yourself the pain and misery.
+
+## Forgetting to unsubscribe from handlers
+
+This has already been mentioned a lot, but remember to [unsubscribe from all event handlers](/docs/guides/events#unsubscribing-from-events) you subscribe to, usually in the `cleanup` function, to avoid memory leaks and performance issues.

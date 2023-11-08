@@ -1,0 +1,116 @@
+# Static Types
+
+The way Moonsharp handles static members in a type is by providing access through an _instance_ of the type. Kinda weird, outta my control.
+
+This means you'll have to create an instance just to access the static member.
+
+And if you were paying attention in the section about [constructors](/docs/guides/constructors), you'll remember that you cannot construct an arbitrary reference type (class) from your ModScript.
+
+So, I've manually gone and added some instances of important types containing static members that are used commonly used when coding a game in Unity:
+
+## Special Types
+
+### Time
+
+`Time` contains a lot of useful static members for dealing with in-game global time related variables, such as `Time.deltaTime` for the amount of time passed since the last frame, the `Time.timeScale` to for how much slow-mo or speed-up there is, and a lot more (read the Unity [Time docs](https://docs.unity3d.com/ScriptReference/Time.html))
+
+For example:
+
+```lua {4}
+local timeGoneBy = 0
+
+function update()
+    timeGoneBy = timeGoneBy + Time.deltaTime -- you could also just use Time.time for all this but this is a pedantic example.
+end
+```
+
+### UnityObject
+
+`UnityEngine.Object` (exposed as `UnityObject`) contains three important categories of static members: `Instantiate`, `Destroy`, and `FindXXX` methods.
+
+For example:
+
+```lua {6}
+local existingFlappy = getItemsByType("FlappyBird")[1] -- requires flappy bird already in the level
+local dummyQuaternion = createInstance("Quaternion")
+local posOffset = createInstance("Vector3")
+posOffset.x, posOffset.y = 2, 1
+
+local flappyClone = UnityObject.Instantiate(
+    existingFlappy,
+    getItemsByType("MemeorangMan")[1].transform.position + posOffset,
+    dummyQuaternion.identity, -- looky here, it's using a static member! (more on this later)
+    existingFlappy.transform.parent)
+```
+
+Here's another noteworthy example:
+
+```lua {3}
+registerType("EnemyMovementController")
+
+local enemyMovementControllers = UnityObject.FindObjectsByType(getType("EnemyMovementController"), 0);
+
+for idx, enemyMovCtrl in ipairs(enemyMovementControllers) do
+    print(enemyMovCtrl.MoveForce)
+    enemyMovCtrl.MoveForce = 0 -- make all enemies not move
+end
+```
+
+<details>
+  <summary>resolveAsActualType</summary>
+
+You may have noticed the use of `resolveAsActualType`. This is a little helper that internally just returns the type as a `System.Object`, to trick MoonSharp into resolving the type as the most derived type it can possibly be. Because here, `UnityObject.FindObjectsOfType`'s C# return type is `UnityEngine.Object[]`, even though the actual underlying type in memory is `EnemyMovementController[]`, which is the thing we want to use in the for loop. Otherwise, without it, you would get an error trying to access `MoveForce`.
+
+</details>
+
+### Physics2D
+
+`Physics2D` contains a lot of useful static members for dealing with 2D physics as well. For example:
+
+```lua {10}
+registerType('Player')
+registerType('PlayerInfo')
+registerType('ContactPoint2D')
+
+local player = getCurrentItem().GetComponent('Player')
+local playerLeftFootCol = player.Info.LeftFootCollider
+local contacts = createCollection('System.Collections.Generic.List`1[[UnityEngine.ContactPoint2D, UnityEngine]]')
+
+function getPlayerLeftFootContacts(collider)
+    Physics2D.GetContacts(collider, contacts)
+    print("Number of contacts: ", contacts.Count)
+    return contacts
+end
+
+invokeAfterTime(1, getPlayerLeftFootContacts, {playerLeftFootCol})
+```
+
+### Mathf
+
+Another useful bad boy, `Mathf` exposes some static arithmetic members, such as
+
+```lua {1}
+local leCalculation = Mathf.Atan2(420, 69)
+print("le calc ", leCalculation)
+```
+
+## Static Members
+
+Ok, that was the explanation of static members on reference types that you aren't normally able to construct or gain a reference to. I constructed them for you 🥹.
+
+Now how about static members on types you _are_ able to use in your ModScripts?
+
+Well, you'll need an instance of the type to access them from, just like before. You can either [create the instance](/docs/guides/constructors) yourself if the type is a struct, or you'll need to get an instance using something like `GetComponent`
+
+```lua {7}
+local dummyVector2 = createInstance("Vector2")
+local pointA, pointB = createInstance("Vector2"), createInstance("Vector2")
+
+pointA.x, pointA.y = 6, 9
+pointB.x, pointB.y = 4, 2
+
+local distance = dummyVector2.Distance(pointA, pointB) -- normally accessed as Vector2.Distance in C# Unity
+print("distance: ", distance)
+```
+
+So yeah.

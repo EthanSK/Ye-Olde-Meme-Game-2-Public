@@ -1,0 +1,91 @@
+# Collections
+
+A collection is just a group of data, like a list of numbers, or a dictionary of strings. MoonSharp automatically converts some commonly used C# collections into Lua tables, and vice versa.
+
+This can be quite nice, since you can deal with collections entirely in the Lua paradigm, instead of needing to work with C# stuff directly.
+
+For example, in this snippet:
+
+```lua
+local illuminatis = getItemsByType("Illuminati") -- illuminatis is a table
+local illuminatiSpriteRens = {} -- define a new Lua table here too coz why not
+for idx, illuminati in ipairs(illuminatis) do
+    illuminatiSpriteRens[idx] = illuminati.GetComponent('SpriteRenderer')
+end
+```
+
+the `getItemsByType` function has been implemented on the C# side to return a `List<GameObject>`, which is a C# `collection`. And because it gets converted to a `table` in your ModScript, you can use Lua's `ipairs` to loop through it.
+
+However, there can be problems using tables in some cases.
+
+## The Problem
+
+When MoonSharp automatically converts the C# collection to a Lua table (and vice versa), it has to create a _new copy_ of the collection instead of keeping the same reference to the old one. This is usually not a problem, but there are some cases where it is.
+
+In Unity code, there are a lot of methods that take an `Array`, or a `List`, as an argument, then _modify_ that collection _within_ the method. I don't know if this is great practice on Unity's behalf, but it's the reality of which we must live.
+
+So, if you try and pass a Lua table to a Unity method, it gets automatically converted to a C# collection as a new copy, and so the modification happens on that copy of the collection, not the original Lua table.
+
+So after calling that method, the Lua table you passed in will be unchanged, which is probably not what you want. For example, this wouldn't work:
+
+```lua {2,3}
+local audioSource = getItemsByType("HeNeedsSomeMilk")[1].GetComponent("AudioSource")
+local audioSamples = {} -- here we define a lua table
+audioSource.clip.GetData(audioSamples, 0); -- here we pass that table to a Unity method that expects an array
+```
+
+It might correctly convert the `audioSamples` table to the C# array and populate that with audio sample data _within_ `GetData`, but the original `audioSamples` table will be unchanged.
+
+## The Solution
+
+To get around this problem, I made a `createCollection` helper function that creates a C# collection internally, then wraps it in MoonSharp's `UserData` type, which prevents it from being automatically converted to a new Lua table, and allows a reference to that same exact collection to be used from within your ModScript,
+
+So `createCollection` returns the `UserData` object it created internally, and now you can keep a direct reference to it from your Lua ModScript, and pass _that_ to the Unity method that modifies the collection.
+
+`createCollection` takes as arguments:
+
+1. The type of the collection, e.g.
+   - `"System.Single[]"` for an Array of floats,
+   - `` "System.Collections.Generic.List`1[[UnityEngine.ContactPoint2D, UnityEngine]]" `` for a List of type `UnityEngine.ContactPoint2D`
+   - `` "System.Collections.Generic.Dictionary`2[[System.String], [Enemy, Assembly-CSharp]]" `` for a Dictionary where the key type is `System.String`, and value type is `Enemy` (which is a YOMG2 type, so we use the `Assembly-CSharp` assembly)
+2. A key-value Lua table of options. Right now it's used for **arrays** only, i.e. `{ arrayLength = 666 }`
+
+Here's how you could use it:
+
+```lua {6}
+registerType("AudioSource")
+registerType("AudioClip")
+
+local audioSource = getItemsByType("HeNeedsSomeMilk")[1].GetComponent("AudioSource") -- needs a "HeNeedsSomeMilk" item in the level
+local samplesCount = audioSource.clip.samples * audioSource.clip.channels
+local samples = createCollection("System.Single[]", {arrayLength = samplesCount}) -- arrays are a special case from other collections that don't take generic arguments, and have a fixed, known size
+
+audioSource.clip.GetData(samples, 0);
+
+for i = 0, samples.Length - 1 do
+    local randomFloat = 0.5 + (math.random() * 0.5) -- rand betweer 0.5 and 1
+    samples[i] = samples[i] * randomFloat -- can use square brackets to index C# collections!
+end
+
+audioSource.clip.SetData(samples, 0); -- ruins the audio, just an example
+```
+
+:::tip
+Remember, C# collections used 0-based indexing, and Lua tables are 1-based, so in a C# collection the first element will be at index 0.
+:::
+
+:::warning
+There is a caveat to using `createCollection`: after you do this once, MoonSharp will no longer automatically convert a collection of that type to a table. Instead it will just return a reference to the C# collection object. And that happens to all ModScript code everywhere if it executes after `createCollection` was called.
+
+<details>
+<summary>Why?</summary>
+
+Because `createCollection` needs to (interally) call `registerType` with the provided type, and registering types is global. You could just call `registerType` with the C# collection type yourself if you want more consistent behaviour from the get-go, but that's up to you.
+
+Or you could set the execution order of your scripts with `createCollection` to something really high, so it runs after everything else and doesn't affect them.
+
+It is a bit annoying, but there's not much I can do about it. At least it probably won't a problem too much of the time, I don't know why you'd need to create a collection of GameObjects, which would change the return type of `getItemsByType`
+
+</details>
+
+:::

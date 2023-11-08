@@ -1,0 +1,27 @@
+### Namespace whitelist
+
+```csharp
+ "UnityEngine", "UnityEngine.U2D", "UnityEngine.EventSystem", "UnityEngine.InputSystem", "UnityEngine.UI", "UnityEngine.Rendering", "UnityEngine.Rendering.Universal", "UnityEngine.Audio", "UnityEngine.Animations", "UnityEngine.Events", "TMPro", "ETGgames", "ETGgames.Utils", "ETGgames.Extensions", "ETGgames.YOMG2.Extensions", "System.Collections.Generic", "System.Linq", "System.Collections"
+```
+
+### Base Type whitelist
+
+```csharp
+typeof(UnityEngine.Object), typeof(EventArgs), typeof(SettingsMemeItem)
+```
+
+Base type whitelist is used if the type wasn't found in the namespace whitelisted, but only if it's in the YOMG2 assembly (`Assembly-CSharp`)
+
+### Singleton whitelist
+
+```csharp
+typeof(PlayerManager), typeof(CameraManager), typeof(HUD), typeof(MemeUIManager), typeof(OpenNaNoorManager), typeof(PortalManager), typeof(AudioManager), typeof(GamepadInputProxies),
+```
+
+Singleton whitelist is only used if the type is a `Singleton`
+
+### Assembly prefixes whitelist
+
+```csharp
+ "UnityEngine.", "Unity.", "mscorlib", "netstandard", "Assembly-CSharp", "System"
+```

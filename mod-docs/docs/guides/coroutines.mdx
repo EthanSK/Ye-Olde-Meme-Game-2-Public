@@ -1,0 +1,58 @@
+# Coroutines
+
+Coroutines are a way to schedule your code to execute after some time. There are 4 coroutines exposed for use in your ModScripts:
+
+1. `invokeAfterTime`
+2. `invokeAfterTimeRealtime`
+3. `invokeAfterEndOfFrame`
+4. `invokeAfterFixedUpdate`
+
+## invokeAfterTime
+
+`invokeAfterTime` is used to schedule a function after a specified amount of _in-game_ time. This means that if the `Time.timeScale` was altered to cause slow-motion or speed-up, the coroutine will execute slower or faster respectively.
+
+```lua {5}
+function someFunction(arg1, arg2)
+    print("someFunction called with args: ", arg1, arg2) -- args are "ligma" and "balls"
+end
+Time.timeScale = 6.9 -- causes speed-up
+invokeAfterTime(4.20, someFunction, {"ligma", "balls"}) -- executes after 4.20 / 6.9 = 0.6 seconds
+```
+
+As shown, the arguments are passed to the function via a Lua table.
+
+## invokeAfterTimeRealtime
+
+`invokeAfterTimeRealtime` is used to schedule a function after a specified amount of _real_ time, regardless of the time scale. You'll probably end up using this less than `invokeAfterTime`, but you do you.
+
+```lua {5}
+function someFunction(arg1, arg2)
+    print("someFunction called with args: ", arg1, arg2)
+end
+Time.timeScale = 6.9
+invokeAfterTimeRealtime(4.20, someFunction, {"shekma", "donkey"}) -- executes after 4.20 seconds
+```
+
+## invokeAfterEndOfFrame
+
+`invokeAfterEndOfFrame` executes the function at the end of the frame. This may be useful for doing stuff after all `update` methods have been called, but before the frame is rendered.
+
+```lua {4}
+function someFunction(arg1, arg2)
+    print("kevin joke: ", arg1, arg2)
+end
+invokeAfterEndOfFrame(someFunction, {8008, "s"}) -- executes at end of frame
+```
+
+## invokeAfterFixedUpdate
+
+`invokeAfterFixedUpdate` executes the function at the end of the fixed update cycle (which is a physics engine step). This may be useful for doing stuff after all `fixedUpdate` methods have been called, which is when all physics engine stuff is calculated.
+
+```lua {4}
+function someFunction(arg1, arg2)
+    print("kevin joke: ", arg1, arg2)
+end
+invokeAfterEndOfFrame(someFunction, {8008, "s"}) -- executes at end of frame
+```
+
+And there you have it.

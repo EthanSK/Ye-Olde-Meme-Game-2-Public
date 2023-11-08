@@ -1,0 +1,196 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+:root {
+  --ifm-color-primary: #ff0000; /* Red */
+  --ifm-color-primary-dark: #ff7f00; /* Orange */
+  --ifm-color-primary-darker: #ffff00; /* Yellow */
+  --ifm-color-primary-darkest: #7fff00; /* Chartreuse */
+  --ifm-color-primary-light: #00ff00; /* Green */
+  --ifm-color-primary-lighter: #00ffff; /* Aqua */
+  --ifm-color-primary-lightest: #007fff; /* Azure */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --opposite-to-background: black;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="dark"] {
+  --ifm-color-primary: #992bff; /* BlueViolet */
+  --ifm-color-primary-dark: #4b0082; /* Indigo */
+  --ifm-color-primary-darker: #9400d3; /* Violet */
+  --ifm-color-primary-darkest: #9932cc; /* DarkOrchid */
+  --ifm-color-primary-light: #8b008b; /* Magenta */
+  --ifm-color-primary-lighter: #ff69b4; /* HotPink */
+  --ifm-color-primary-lightest: #ff1493; /* DeepPink */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --opposite-to-background: white;
+}
+
+p {
+  font-size: large;
+}
+
+body {
+  font-family: "Comic Sans MS", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar__title {
+  font-family: "Impact", sans-serif;
+  color: white;
+  -webkit-text-stroke: 0.03em black;
+  text-shadow: 0.0625em 0.0625em 0 #000, -0.0625em 0.0625em 0 #000,
+    0.0625em -0.0625em 0 #000, -0.0625em -0.0625em 0 #000, 0 0.0625em 0 #000,
+    0.0625em 0 0 #000, 0 -0.0625em 0 #000, -0.0625em 0 0 #000;
+}
+
+/* its annoying to have rainbow gradient text on actual text u have to read, within the actual docs */
+.home-page p:not(.hero__subtitle),
+.home-page a:not(.button),
+.navbar a,
+.home-page {
+  /* background-image: linear-gradient(
+    to left,
+    violet,
+    rgb(255, 0, 255),
+    rgb(0, 132, 255),
+    green,
+    yellow,
+    orange,
+    red
+  ); */
+
+  background-image: url("/img/rainbow-gradient-linear.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* Stretches the image to fit the entire element */
+  background-position: center;
+  color: transparent !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: horizontal-shadow vertical-shadow blur color;
+}
+
+.hero {
+  background-image: url("/img/rainbow-gradient-radial.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#__docusaurus > footer {
+  background-image: url("/img/rainbow-gradient-linear.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* Stretches the image to fit the entire element */
+  background-position: center; /* This can be kept, but with 100% 100%, it's redundant */
+}
+
+.footer__item a,
+.footer__title,
+.footer__copyright {
+  font-weight: bold;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+
+  /* -webkit-text-stroke: 0.05em rgb(120, 120, 120); */
+}
+
+.theme-doc-sidebar-container a:not(.menu__link--active) {
+  background-image: linear-gradient(
+    to left,
+    rgb(0, 132, 255),
+    rgb(255, 0, 255),
+    rgb(0, 132, 255),
+    rgb(0, 132, 255),
+    rgb(255, 0, 255),
+    rgb(0, 132, 255),
+    rgb(0, 132, 255),
+    rgb(255, 0, 255),
+    rgb(0, 132, 255),
+    rgb(133, 195, 0),
+    rgb(255, 221, 0),
+    red,
+    rgb(255, 0, 255),
+    rgb(0, 132, 255),
+    rgb(0, 234, 255),
+    rgb(0, 235, 0)
+  );
+  /* background-image: url("/img/rainbow-gradient-radial.png"); */
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* Stretches the image to fit the entire element */
+  background-position: center;
+  color: transparent !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: horizontal-shadow vertical-shadow blur color;
+
+  border: 1px solid #a2a2a200; /* so it doesnt jitter the size when hovering.*/
+  box-sizing: border-box;
+}
+
+.theme-doc-sidebar-container a:not(.menu__link--active):hover {
+  background-image: linear-gradient(
+    to left,
+    rgb(0, 132, 255),
+    rgb(255, 0, 255)
+  ) !important;
+  /* background-image: url("/img/rainbow-gradient-radial.png"); */
+  background-repeat: no-repeat !important; /* without all these emiportants, the dropdown disappears while hovering*/
+  background-size: 100% 100% !important; /* Stretches the image to fit the entire element */
+  background-position: center !important;
+  color: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  text-shadow: horizontal-shadow vertical-shadow blur color !important;
+  border: 1px solid #c6c6c617; /* Solid border with a color of #333 (dark gray) */
+  box-sizing: border-box;
+}
+
+.theme-doc-sidebar-container a.menu__link--active {
+  color: var(--opposite-to-background);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: horizontal-shadow vertical-shadow blur color;
+
+  border: 1px solid #a2a2a234; /* Solid border with a color of #333 (dark gray) */
+  box-sizing: border-box;
+}
+
+.table-of-contents a,
+.navbar a {
+  background-image: linear-gradient(
+    to left,
+    rgb(0, 132, 255),
+    rgb(255, 0, 255),
+    yellow,
+    green,
+    rgb(0, 132, 255),
+    red,
+    orange,
+    rgb(255, 221, 0),
+    green,
+    rgb(0, 132, 255),
+    rgb(255, 0, 255)
+  );
+  /* background-image: url("/img/rainbow-gradient-radial.png"); */
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* Stretches the image to fit the entire element */
+  background-position: center;
+  color: transparent !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: horizontal-shadow vertical-shadow blur color;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

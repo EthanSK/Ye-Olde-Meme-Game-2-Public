@@ -1,0 +1,99 @@
+import DocsImage from "@site/src/components/DocsImage";
+
+# ModScript Structure
+
+Let's talk a bit about how ModScripts are created and organized, and what [boilerplate](https://en.wikipedia.org/wiki/Boilerplate_code) and helper functions you need for your ModScripts to work.
+
+## ModScript Editor
+
+This is the ModScript editor:
+
+<DocsImage
+  src={require("./img/modscript editor example.png").default}
+  width={1000}
+/>
+
+On the left, you have the explorer, which shows all the ModScripts attached to the currently selected MemeItem in the Level Builder. Each row shows the title of the ModScript, and an input field to view and change the execution order of the ModScript within that MemeItem.
+
+At the top, from left to right, you have a button to add a new script to the MemeItem, an input field to provide the ModScript's title, and buttons to open the [Community](/docs/guides/community) Mods panel, the [API Reference](/docs/guides/api-reference) panel, and this very tutorial thous't art reading at present time GMT.
+
+Then all the way on the right, there is an input field to view and change the execution order of the selected MemeItem. More on that later.
+
+There is also a dropdown at the top of the explorer view to change the sort order:
+
+<DocsImage
+  src={require("./img/modscript explorer sort order.png").default}
+  width={300}
+/>
+
+<br />
+There's also a a button to delete the open ModScript.
+
+<DocsImage
+  src={require("./img/modscript editor delete script.png").default}
+  width={200}
+/>
+<br />
+
+:::tip
+
+If you accidentally delete a ModScript, you can undo this by closing the ModScript editor, then clicking undo in the Level Builder.
+
+:::
+
+Ok so the main code editor is very basic, providing simple syntax highlighting and per-script undo & redo. If you want better a better coding experience, you should probably use a good code editor that supports Lua, such as [VSCode](https://code.visualstudio.com/), and then copy and paste your Lua scripts into the in-game editor.
+
+## Execution Order
+
+I've briefly mentioned execution order, but here's a bit more explanation. Execution order is just the order your ModScripts run in, from the lowest number to the highest.
+
+There are 2 levels of execution order. The first is the execution order of each ModScript _within_ a single MemeItem. This is what this numeric input field here is for
+
+<DocsImage
+  src={require("./img/explorer item execution order.png").default}
+  width={400}
+/>
+
+Then there is the execution order of the whole MemeItem within the entire level, relative to other MemeItems, which is configured by this numeric input field at the top right:
+
+<DocsImage
+  src={require("./img/execution order in level.png").default}
+  width={400}
+/>
+
+When you start playing a level, the system goes through every MemeItem in execution order within the level, and as it goes through, for each MemeItem, it runs each ModScript with the execution order within the MemeItem. Simple.
+
+Execution order can be negative. It also doesn't have to be unique, but try and make sure two MemeItems, or two ModScripts within a MemeeItem, don't have the same execution order. If they do, make sure code from one of them doesn't rely on the result of code from another.
+
+<br />
+<br />
+
+:::tip
+
+If you want to write a ModScript that isn't related to the MemeItem it's attached to, just add a dummy MemeItem to your level, maybe
+a `Meme Text` item, so you can label it as something to help you remember what it does.
+
+<DocsImage
+  src={require("./img/dummy item for modscript.png").default}
+  width={200}
+/>
+:::
+
+:::info
+All console output is logged to the in-game console, which can be opened by pressing "Open Console".
+
+<div className="centered-container" style={{ gap: "2em" }}>
+  <DocsImage
+    src={require("./img/open console button.png").default}
+    width={200}
+    preventCenteredLayout={true}
+  />
+  <DocsImage
+    src={require("./img/console example.png").default}
+    width={600}
+    preventCenteredLayout={true}
+  />
+</div>
+This button only shows when your level has a ModScript in it.
+
+:::

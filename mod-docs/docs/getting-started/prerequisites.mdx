@@ -1,0 +1,47 @@
+import DocsImage from "@site/src/components/DocsImage";
+
+# Prerequisites
+
+## Lua
+
+<DocsImage
+  src={require("/img/lua-logo.png").default}
+  width={200}
+  link="https://www.lua.org"
+        alt="Lua"
+
+/>
+
+<br />
+
+The only thing you really need to know to get started is the [Lua](https://www.lua.org/manual/5.4/manual.html) programming language. It's a very easy and popular scripting language that's used for modding in many games, such as [Roblox](https://www.roblox.com/). There should be tonnes of tutorials online, so go learn it!
+
+## Unity
+
+<DocsImage
+  src={require("/img/unity-logo.png").default}
+  width={200}
+  link="https://www.unity.com"
+        alt="Unity"
+
+/>
+
+<br />
+
+Ye Olde Meme Game 2 is developed in the Unity game engine. Pretty much all of Unity's components should be available for you to create, access, modify, and destroy. So while you don't _need_ to know Unity, it would be quite helpful. However, you can also get by by consulting the [Unity Manual](https://docs.unity3d.com/Manual/index.html) or asking [ChatGPT](https://chat.openai.com/) or the community.
+
+Unity uses [C#](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/) as its programming language, so some knowledge of it may be helpful for things like understanding how members of Components work, and better understanding the [API Reference](/docs/guides/api-reference). But it's by no means required for basic modding, and you should be able to learn on the go. You must also be comfortable asking ChatGPT about Unity and C# stuff when needed. ModScripting is an opportunity for you to grow as a programmer if you aren't already a 10X 😒
+
+## MoonSharp
+
+<DocsImage
+  src={require("/img/moonsharp-logo.png").default}
+  width={200}
+  link="https://www.moonsharp.org/"
+  alt="Moonsharp"
+
+/>
+
+<br />
+
+So some absolute legend went and wrote an interpreter for Lua **entirely** in C#. That interpreter is called [Moonsharp](https://www.moonsharp.org/), and it's what we use to run Lua scripts in Ye Olde Meme Game 2. You don't need to know about it, but especially for advanced users, if you run into any weird issue or want to find out more about why you have to write your ModScripts the way you do, you can check out the documentation [here](https://www.moonsharp.org/getting_started.html).

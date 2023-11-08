@@ -1,0 +1,29 @@
+import { featureRequestUrl } from "@site/src/constants";
+
+# Constructors
+
+In Lua, there is no `new` keyword, so you cannot construct new instances of classes or structs in your ModScripts. Now I could just create a function that lets you construct any type, but i don't think that's very safe.
+
+But actually, on second thought, it's probably fine to do construction of _value types_ (structs), as long as they fall within the whitelist (described in the [types](/docs/guides/types#whitelist) section)
+
+So, I created a helper function `createInstance` that takes a [type name](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/specifying-fully-qualified-type-names), and returns a new instance of that type.
+
+```lua {4}
+registerType('Player')
+local player = getItemsByType("MemeorangMan")[1]
+
+local newScale = createInstance("Vector3")
+newScale.x, newScale.y, newScale.z = 0.4, 2, player.transform.localScale.z
+player.transform.localScale = newScale
+```
+
+Notice how the values are assigned after construction. All structs in C# have a default parameterless constructor, why is why you can get away with just constructing from the struct type name alone. Pretty much all Unity structs should let you modify the member values after.
+
+Some useful structs you may commonly use might include:
+
+- `Vector2`
+- `Vector3`
+- `Quaternion`
+- `Color`
+
+...and more. Remember to consult the Unity [docs](https://docs.unity.com/) for more information

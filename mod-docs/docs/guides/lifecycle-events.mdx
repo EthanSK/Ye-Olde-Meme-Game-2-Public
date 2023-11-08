@@ -1,0 +1,120 @@
+import DocsImage from "@site/src/components/DocsImage";
+
+# Lifecycle Events
+
+A long time ago, you were born. You are also going to die. You also poo every day. These are lifecycle events.
+
+GameObjects are like people. They have lifecycle events.
+
+In ModScript land, these lifecycle events are split into 2 categories:
+
+1. ModScript-defined handlers
+2. `EventsForModScript` Component
+
+The reason for this split is performance and convenience related.
+
+## ModScript-defined handlers
+
+There are 4 ModScript-defined handlers you can implement in your ModScripts:
+
+1. `update()` - called every frame (fps can vary dramatically)
+2. `fixedUpdate()` - called every physics step (fixed at 30fps)
+3. `lateUpdate()` - called every frame, after all `update`s have been called across all scripts
+4. `cleanup()` - called when exiting the level
+
+Just define them as normal Lua functions in your ModScript, and they will be called automatically at the appropriate time.
+
+```lua
+function lateUpdate()
+  -- do stuff at the end of every frame. be very careful about performance
+end
+```
+
+### Cleanup
+
+The `cleanup` function gets called when "exiting the level", in the same order as the scripts were started.
+
+```lua
+function cleanup()
+  -- unsubscribe from all events here with <some event>.remove()
+end
+```
+
+In this context "exiting the level" means:
+
+- Level Builder: after exiting play mode
+- Play Created Level: after leaving the scene
+
+:::warning
+Make sure you cleanup _all_ events you subscribed to in your scripts, and everything else that's appropriate, or you will cause memory leaks and it will degrade [performance](/docs/guides/performance).
+:::
+
+## EventsForModScript Component
+
+All the other lifecycle events you'd normally use in Unity are implemented in a separate Component in the YOMG2 codebase, called `EventsForModScript`.
+
+It hooks Unity's [lifecycle events](https://docs.unity3d.com/Manual/ExecutionOrder.html) up to native C# events, which is covered in the [Events](/docs/guides/events) section.
+
+Here are all the events you can subscribe to, copied and pasted from the C# Component directly:
+
+```csharp
+public event EventHandler AwakeEvent = delegate { };
+public event EventHandler StartEvent = delegate { };
+public event EventHandler OnDestroyEvent = delegate { };
+
+public event EventHandler OnEnableEvent = delegate { };
+public event EventHandler OnDisableEvent = delegate { };
+
+public class CollisionEventArgs : EventArgs { public Collision2D Other { get; set; } }
+public class ColliderEventArgs : EventArgs { public Collider2D Other { get; set; } }
+
+public event EventHandler<CollisionEventArgs> OnCollisionEnterEvent = delegate { };
+public event EventHandler<CollisionEventArgs> OnCollisionExitEvent = delegate { };
+public event EventHandler<CollisionEventArgs> OnCollisionStayEvent = delegate { };
+
+public event EventHandler<ColliderEventArgs> OnTriggerEnterEvent = delegate { };
+public event EventHandler<ColliderEventArgs> OnTriggerExitEvent = delegate { };
+public event EventHandler<ColliderEventArgs> OnTriggerStayEvent = delegate { };
+
+public event EventHandler OnMouseUpEvent = delegate { };
+public event EventHandler OnMouseDownEvent = delegate { };
+public event EventHandler OnMouseDragEvent = delegate { };
+```
+
+You'll need to add the `EventsForModScript` to your GameObject that you want events on, like in this example:
+
+```lua {8,15,18}
+registerType("EventsForModScript")
+registerType("EventsForModScript+CollisionEventArgs")
+registerType("Collision2D")
+registerType("MemeItem")
+registerType("AbstractMemeItemData")
+
+local curItem = getCurrentItem()
+local events = curItem.AddComponent(getType("EventsForModScript"))
+
+function collisionHandler(sender, eventArgs)
+    local otherCollider = eventArgs.Other -- look at CollisionEventArgs pasted above
+    print("other collision: ", otherCollider.gameObject.GetComponent("MemeItem").Data.Name)
+end
+
+events.OnCollisionEnterEvent.add(collisionHandler)
+
+function cleanup()
+    events.OnCollisionStayEvent.remove(collisionHandler)
+end
+```
+
+<details>
+    <summary>Check out this in-depth diagram from the [Unity Documentation](https://docs.unity3d.com/Manual/ExecutionOrder.html) about lifecycle events and order of execution</summary>
+
+<DocsImage
+  src={"https://docs.unity3d.com/uploads/Main/monobehaviour_flowchart.svg"}
+  width={1500}
+/>
+
+</details>
+
+## ModScripts themselves
+
+When the level starts being played, the ModManager in the game will go through all MemeItems with ModScripts in the level in execution order, and for each one, execute each ModScript in script execution order. As mentioned, the same order is used for [cleanup](#cleanup).

@@ -1,0 +1,111 @@
+import DocsImage from "@site/src/components/DocsImage";
+
+# Error Handling
+
+MoonSharp is great when it comes to error messages. It tells you the exact line number, column number, and cause of the error. The error message also includes the title of the ModScript and the MemeItem ID in the error message should make debugging your code a breeze (famous last words)
+
+When an error occurs, it will automatically open the console to show the error message.
+
+## Console
+
+This is the console window:
+
+<DocsImage
+  src={require("./img/console with error example.png").default}
+  width={1000}
+/>
+
+It's used to log output from the `print` or `printTable` functions in your ModScripts, as well as show error messages.
+
+You can resize it, zoom in and out, clear the output, and close it with the button or the `Esc` key.
+
+You can also click on error messages in the console and it will take you to the correct line in the correct ModScript on the correct MemeItem.
+
+And for you reference, at the start of every log there is the exact time it was logged.
+
+## Error messages
+
+When I was younger and first learning to code, for some reason, I was always so afraid of error messages. My brain refused to read them, partly because I thought they require a loads of effort to understand, and partly because I didn't trust that the computer would be able to give me any useful information if I did bother.
+
+Well my friends, that is simply not the case.
+
+Error messages will save you from hours of pain and misery.
+
+And in MoonSharp, the error messages are usually especially clear.
+
+Take this erroneous ModScript on a `Health Area` MemeItem:
+
+```lua
+-- hello line 1
+local youFrickinMoron = "you just got beaned"
+
+print(lebronjaaaaa a a a  )
+```
+
+You will get this error message:
+
+<DocsImage
+  src={require("./img/console error message line.png").default}
+  width={1000}
+/>
+
+<br />
+
+```
+Error in "Vegetals Script 001" on "Vegetals-761131-6978": chunk_0:(4,19-20): ')' expected (to close '(' at line 4) near 'a'
+```
+
+### Dissecting an error message
+
+Let's dissect this error message.
+
+From right to left, the first useful thing we come across is the ModScript title, which is `"Vegetals Script 001"`, and the MemeItem ID, which is `"Vegetals-761131-6978"`. Already very useful, we _actually_ know what script on what MemeItem to look at to begin our debugging process.
+
+Then there's a `chunk_0`. I have no clue how this works, it's just some MoonSharp thing, but it's not really important.
+
+Then there's the line number, which is `4`, and the column range (character position on that line), which is `19-20`.
+This tells your where exactly in your ModScript the error is.
+
+Then there's the actual error, which in this case is that a closing bracket, `')'`, was expected to close the openining bracket, `'('`, but it couldn't find one. And then just for poos and giggles it says what character it's near too, `'a'`. Great.
+
+### Call Stack
+
+Sometimes, an error message will also show a call stack, which shows the path of function calls that was taken to arrive at the error.
+
+Take this script for example:
+
+```lua
+function poo()
+  print(aoeu.aoeu)
+end
+
+function pee()
+  poo()
+end
+
+function lol()
+  pee()
+end
+
+lol()
+```
+
+This will give an error message like
+
+```
+Error in "Memeorang Man Script 001" on "MemeorangMan-683170-f310": chunk_0:(2,7-18): attempt to index a nil value
+Call Stack:
+poo
+pee
+lol
+```
+
+This just means that the error occured in the `poo` function, which was called by the `pee` function, which was called by the `lol` function. That kind of information can be very useful for debugging.
+
+## Implications
+
+Here are some implications of errors.
+
+- You can't publish your level until it's free of errors.
+- Tbh, this whole modding system was a complete last minute afterthough for which I had to go on a month long coding bender in order to implement, so a lot of stuff will probably be broken and not work at first, so please cut me some slack and [report the bug](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Public/issues/new/choose) with steps to reproduce. Thanks (also it's technically only supported in `experimental` mode).
+- It is incredibly important that once you're done, you **test your level in "Play Created Level" mode as the environment differs to the Level Builder, so some things you thought would work will not.** Since there is no console in this mode, you should check the Unity logs file on your computer to see if there are any errors. See the ["Player-related log locations" section of the Unity docs](https://docs.unity3d.com/Manual/LogFiles.html).
