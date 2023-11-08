@@ -11,7 +11,7 @@ const config: Config = {
   url: "https://www.etggames.com",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "ye-olde-meme-game-2-mod-docs",
+  baseUrl: "Ye-Olde-Meme-Game-2-Public",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
