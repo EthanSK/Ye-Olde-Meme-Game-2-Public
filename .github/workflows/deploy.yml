@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main # Set this to the branch where your docs are located
+      - master
 
 jobs:
   build:
