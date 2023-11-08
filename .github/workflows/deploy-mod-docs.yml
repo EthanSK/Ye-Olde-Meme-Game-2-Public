@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: "18" 
 
-      - name: Install and Build 🔧
+      - name: Install and Build
         run: |
           npm install
           npm run build
@@ -33,6 +33,9 @@ jobs:
 
   deploy:
     needs: build
+    defaults:
+      run:
+        working-directory: mod-docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
