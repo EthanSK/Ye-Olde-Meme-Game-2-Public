@@ -4,6 +4,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 import styles from "./index.module.css";
 
@@ -34,7 +35,9 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       wrapperClassName={clsx({
-        "home-page": location.pathname === siteConfig.baseUrl,
+        "home-page":
+          ExecutionEnvironment.canUseDOM &&
+          location.pathname === siteConfig.baseUrl,
       })}
       title={`${siteConfig.title}`}
       description="Documentation for ModScripting in Ye Olde Meme Game 2"
