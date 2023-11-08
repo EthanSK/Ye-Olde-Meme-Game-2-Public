@@ -1,3 +1,5 @@
+Feel free to submit pull requests to improve the documentation.
+
 # Website
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
