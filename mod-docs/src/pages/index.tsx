@@ -7,6 +7,7 @@ import Heading from "@theme/Heading";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 import styles from "./index.module.css";
+import { gptAssistant } from "../constants";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -23,6 +24,12 @@ function HomepageHeader() {
             to="/docs/intro"
           >
             Get Started
+          </Link>
+          <Link
+            className="button button--secondary button--lg"
+            to={gptAssistant}
+          >
+            GPT Assistant
           </Link>
         </div>
       </div>

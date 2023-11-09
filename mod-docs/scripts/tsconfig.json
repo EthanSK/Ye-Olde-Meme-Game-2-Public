@@ -7,12 +7,12 @@
     "forceConsistentCasingInFileNames": true, // Ensure case matches exactly between imports and files
     "skipLibCheck": true, // Skip type checking of all declaration files (*.d.ts)
     "outDir": "./dist", // Output directory for the compiled files
-    "rootDir": "./", // Root directory of the project
+    // "rootDir": "./", // Root directory of the project //doesnt allow access to ../sidebars.ts
     "resolveJsonModule": true, // Allow importing json files
     "allowSyntheticDefaultImports": true // Allow default imports from modules with no default export
   },
   "include": [
-    "scripts/**/*.ts" // Include your TypeScript files in the scripts folder
+    "./**/*.ts" // Include your TypeScript files in the scripts folder
   ],
   "exclude": [
     "node_modules", // Exclude the node_modules directory
