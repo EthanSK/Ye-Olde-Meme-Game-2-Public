@@ -1,12 +1,12 @@
 # Static Types
 
-The way Moonsharp handles static members in a type is by providing access through an _instance_ of the type. Kinda weird, outta my control.
+The way Moonsharp gives you access to static members of a type is through an _instance_ of that type. Kinda weird, but outta my control.
 
 This means you'll have to create an instance just to access the static member.
 
 And if you were paying attention in the section about [constructors](/docs/guides/constructors), you'll remember that you cannot construct an arbitrary reference type (class) from your ModScript.
 
-So, I've manually gone and added some instances of important types containing static members that are used commonly used when coding a game in Unity:
+So, I've manually gone and added instances of some important types containing static members that would be commonly used when coding a game in Unity.
 
 ## Special Types
 
@@ -56,25 +56,19 @@ for idx, enemyMovCtrl in ipairs(enemyMovementControllers) do
 end
 ```
 
-<details>
-  <summary>resolveAsActualType</summary>
-
-You may have noticed the use of `resolveAsActualType`. This is a little helper that internally just returns the type as a `System.Object`, to trick MoonSharp into resolving the type as the most derived type it can possibly be. Because here, `UnityObject.FindObjectsOfType`'s C# return type is `UnityEngine.Object[]`, even though the actual underlying type in memory is `EnemyMovementController[]`, which is the thing we want to use in the for loop. Otherwise, without it, you would get an error trying to access `MoveForce`.
-
-</details>
-
 ### Physics2D
 
-`Physics2D` contains a lot of useful static members for dealing with 2D physics as well. For example:
+`Physics2D` contains a lot of useful static members for dealing with 2D physics. For example:
 
-```lua {10}
-registerType('Player')
-registerType('PlayerInfo')
-registerType('ContactPoint2D')
+```lua {11}
+registerType("Player")
+registerType("PlayerInfo")
+registerType("ContactPoint2D")
 
-local player = getCurrentItem().GetComponent('Player')
+local player = getCurrentItem().GetComponent("Player")
 local playerLeftFootCol = player.Info.LeftFootCollider
-local contacts = createCollection('System.Collections.Generic.List`1[[UnityEngine.ContactPoint2D, UnityEngine]]')
+-- be careful creating collections, read the collections section to find out why
+local contacts = createCollection("System.Collections.Generic.List`1[[UnityEngine.ContactPoint2D, UnityEngine]]")
 
 function getPlayerLeftFootContacts(collider)
     Physics2D.GetContacts(collider, contacts)
@@ -87,7 +81,7 @@ invokeAfterTime(1, getPlayerLeftFootContacts, {playerLeftFootCol})
 
 ### Mathf
 
-Another useful bad boy, `Mathf` exposes some static arithmetic members, such as
+Another useful bad boy, `Mathf` exposes some static arithmetic functionality, such as
 
 ```lua {1}
 local leCalculation = Mathf.Atan2(420, 69)
@@ -96,11 +90,11 @@ print("le calc ", leCalculation)
 
 ## Static Members
 
-Ok, that was the explanation of static members on reference types that you aren't normally able to construct or gain a reference to. I constructed them for you 🥹.
+Ok, that was the explanation of static members on reference types that you aren't normally able to construct or gain a reference to. I constructed them for you 👉👈 🥹.
 
 Now how about static members on types you _are_ able to use in your ModScripts?
 
-Well, you'll need an instance of the type to access them from, just like before. You can either [create the instance](/docs/guides/constructors) yourself if the type is a struct, or you'll need to get an instance using something like `GetComponent`
+Well, you'll need an instance of the type to access them from, just like before. You can either [create the instance](/docs/guides/constructors) yourself if the type is a struct, or you'll need to obtain an instance using something like `GetComponent`
 
 ```lua {7}
 local dummyVector2 = createInstance("Vector2")
