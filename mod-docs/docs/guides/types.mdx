@@ -17,14 +17,13 @@ registerType("Rigidbody2D")
 ```
 
 `registerType` should be the first thing to check you haven't forgetten if you get an error.
-And don't worry, it's ok if you register the type more than you need, you're not gonna get 'rona.
 
-:::tip
+:::info
 
-You can register nested types by using '+'
+If the type is not a YOMG2 type, or is not directly under the `UnityEngine` namespace, you have to provide the full namespace path, for example:
 
 ```lua
-registerType("EventsForModScript+Collision2DEventArgs")
+registerType("UnityEngine.U2D.Spline")
 ```
 
 :::
@@ -43,53 +42,53 @@ ScriptRuntimeException: cannot convert clr type HealthChangedEventArgs
 
 or maybe something else idk. But just always make sure you've registered the type before going down a rabbit hole of debugging.
 
-:::info
+:::tip
 
-If the type is not a YOMG2 type, or is not directly under the `UnityEngine` namespace, you have to provide the full namespace path, for example:
+You can register nested types by using '+'
 
 ```lua
-registerType("UnityEngine.U2D.Spline")
+registerType("EventsForModScript+Collision2DEventArgs")
 ```
 
 :::
 
 ## Get Type
 
-The `getType` function is used to get a C# type for a given type name. Funnily enough, it's actually used by `registerType` under the hood. It's useful in a few scenarios.
+The `getType` function is used to get a C# type using its name. Funnily enough, it's actually used by `registerType` under the hood, and it's useful in a few scenarios.
 
-Sometimes, when you are using some methods from, say, a `Unity Engine` Component, it expects a type as an argument.
+Sometimes, when you are using a method from a `Unity Engine` Component, it expects a type as an argument.
 
 Take this for example. This is how you'd normally add a new Component to a GameObject when coding a game in C#.
 
 ```csharp
-gameObject.AddComponent(typeof(Light2D));
+myGameObject.AddComponent(typeof(Light2D));
 ```
 
 The `AddComponent` method you see here is also available for you to use in your ModScript. But notice how it takes a C# type as an argument.
 
 Well in Lua, there are no types, so you wouldn't be able to call this method.
 
-So I added a `getType` function that basically does the same thing. In your ModScript, you can do something like this:
+So I added a `getType` function that basically does the same thing, and in your ModScript, you can do something like this:
 
 ```lua
-gameObject.AddComponent(getType("UnityEngine.Rendering.Universal.Light2D"))
+myGameObject.AddComponent(getType("UnityEngine.Rendering.Universal.Light2D"))
 ```
 
 :::note
-Type names use the class or struct name, not the C# type name. For example, a float is a `System.Single`, an int is a `System.Int32`, and a string is a `System.String`, etc.
+Primitive type names use the class or struct name, not the C# type name. For example, a `float` is a `System.Single`, an `int` is a `System.Int32`, and a `string` is a `System.String`, etc.
 :::
 
 ## Whitelist
 
-For users safety, there is a whitelist that dictates what types you can use in your ModScripts
+For the safety of players, there is a whitelist that dictates what types you can use in your ModScripts
 
 <Whitelist />
 <br />
 
-Overall, this is a very generous allowance, and should allow you to do pretty much anything you want. But if not, submit a <a target="_blank" href={featureRequestUrl}>feature request</a> and I'll try my _very best_ to add it.
+Overall, this is a very generous allowance, and should allow you to do pretty much anything you want. But if not, submit a <a target="_blank" href={featureRequestUrl}>feature request</a> and I'll try my best to add it.
 
 It would be nice to just allow everything in a perfect world, but we need these limitations is in place for [security reasons](/docs/guides/safety-and-security).
 
 :::tip
-Make sure you look [Unity documentation](https://docs.unity.com/) whenever you want more information about a type (class/struct). They have very good docs and examples.
+Make sure you look at [Unity's documentation](https://docs.unity.com/) whenever you want more information about a type (class/struct). They have very good docs and examples.
 :::

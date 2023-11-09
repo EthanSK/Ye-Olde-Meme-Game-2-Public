@@ -10,7 +10,7 @@
 typeof(UnityEngine.Object), typeof(EventArgs), typeof(SettingsMemeItem)
 ```
 
-Base type whitelist is used if the type wasn't found in the namespace whitelisted, but only if it's in the YOMG2 assembly (`Assembly-CSharp`)
+Base type whitelist is used if the type wasn't found in the namespace whitelist, but only if it's in the YOMG2 assembly (`Assembly-CSharp`). It allows types that derive from the specified base types.
 
 ### Singleton whitelist
 
@@ -18,10 +18,14 @@ Base type whitelist is used if the type wasn't found in the namespace whiteliste
 typeof(PlayerManager), typeof(CameraManager), typeof(HUD), typeof(MemeUIManager), typeof(OpenNaNoorManager), typeof(PortalManager), typeof(AudioManager), typeof(GamepadInputProxies),
 ```
 
-Singleton whitelist is only used if the type is a `Singleton`
+Singleton whitelist is used if the type is a `Singleton`
 
 ### Assembly prefixes whitelist
 
 ```csharp
  "UnityEngine.", "Unity.", "mscorlib", "netstandard", "Assembly-CSharp", "System"
 ```
+
+### Others
+
+All YOMG2 interfaces, and all C# primitive types are allowed.
