@@ -2,16 +2,15 @@ import { featureRequestUrl } from "@site/src/constants";
 
 # Constructors
 
-In Lua, there is no `new` keyword, so you cannot construct new instances of classes or structs in your ModScripts. Now I could just create a function that lets you construct any type, but i don't think that's very safe.
+In Lua, there is no `new` keyword, so you cannot construct new instances of classes or structs in your ModScripts. Now I could just give you a function that lets you construct any type, but i don't think that's very safe for the end user.
 
-But actually, on second thought, it's probably fine to do construction of _value types_ (structs), as long as they fall within the whitelist (described in the [types](/docs/guides/types#whitelist) section)
+But on second thought, it's probably fine to do construction of _value types_ (structs), as long as they fall within the [whitelist](/docs/guides/types#whitelist).
 
-So, I created a helper function `createInstance` that takes a [type name](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/specifying-fully-qualified-type-names), and returns a new instance of that type.
+So I created a helper function called `createInstance` that takes a [type name](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/specifying-fully-qualified-type-names), and returns a new instance of that type.
 
-```lua {4}
+```lua {3}
 registerType('Player')
-local player = getItemsByType("MemeorangMan")[1]
-
+local player = getItemsByMemeId("MemeorangMan")[1]
 local newScale = createInstance("Vector3")
 newScale.x, newScale.y, newScale.z = 0.4, 2, player.transform.localScale.z
 player.transform.localScale = newScale

@@ -31,14 +31,14 @@ end
 For example:
 
 ```lua {6}
-local existingFlappy = getItemsByType("FlappyBird")[1] -- requires flappy bird already in the level
+local existingFlappy = getItemsByMemeId("FlappyBird")[1] -- requires flappy bird already in the level
 local dummyQuaternion = createInstance("Quaternion")
 local posOffset = createInstance("Vector3")
 posOffset.x, posOffset.y = 2, 1
 
 local flappyClone = UnityObject.Instantiate(
     existingFlappy,
-    getItemsByType("MemeorangMan")[1].transform.position + posOffset,
+    getItemsByMemeId("MemeorangMan")[1].transform.position + posOffset,
     dummyQuaternion.identity, -- looky here, it's using a static member! (more on this later)
     existingFlappy.transform.parent)
 ```

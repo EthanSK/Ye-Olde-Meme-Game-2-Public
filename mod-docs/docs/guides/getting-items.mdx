@@ -19,7 +19,7 @@ datBoiSpriteRenderer.flipX = true
 
 ## Get Item By ID
 
-There are times where you might want to access a _different_ MemeItem to that of the attached ModScript. This can be done by using `getItemById` and passing the ID as an argument:
+There are times where you might want to access a _different_ MemeItem to that of the attached ModScript. This can be done by using `getItemById` and passing its unique item ID as an argument:
 
 ```lua {2}
 registerType("TMPro.TMP_Text") -- TextMeshPro is weird, u gotta register like this. TMP_Text is the base type of all TextMeshPro components, apply similar logic to other erroring things in the future ig.
@@ -28,26 +28,28 @@ local chargeTheyPhoneText = chargeTheyPhone.GetComponent("TMPro.TMP_Text")
 chargeTheyPhoneText.text = "reeeeeeepeeepeeepoopoo."
 ```
 
-To get this ID, you can copy it by pressing the copy icon next to the ID at the top of the Level Builder UI:
+To get this unique item ID, you can copy it by pressing the copy icon next to the ID at the top of the Level Builder UI:
 
 <DocsImage src={require("./img/copy ID example.png").default} width={400} />
 
-## Get Items By Type
+The `MemeId` here is `OpenNanoor` and the unique item ID is `OpenNanoor-596493-1369`.
 
-There may also be times where you want to do something to multiple MemeItems of a certain type. You can do this by using the `getItemsByType` function and passing the `MemeId`, since "type" in this context just means what MemeItem is it:
+## Get Items By Meme ID
+
+There may also be times where you want to do something to multiple MemeItems of a certain meme type. You can do this by using the `getItemsByMemeId` function and passing the `MemeId`:
 
 ```lua {2}
 registerType("Vector3")
-local chads = getItemsByType("Chad")
+local chads = getItemsByMemeId("Chad")
 for i, chad in ipairs(chads) do -- make all their right arms tiny
     local chadArm = chad.transform.Find("Chad/bone_1/bone_2/bone_11") -- transform is a special type that comes pre-registered so you don't have to :0
     chadArm.transform.localScale = chadArm.transform.localScale * 0.420
 end
 ```
 
-`getItemsByType` returns a List (auto-converted to a Lua table) of all the MemeItems in your level that match that type. You can loop through and filter them and do as you please.
+You can find this `MemeId` by copying the first part of the MemeItem's unique ID, which is explained [above](#get-item-by-id).
 
-{" "}
+`getItemsByMemeId` returns a List (auto-converted to a Lua table) of all the MemeItems in your level that match that type. You can loop through and filter them and do as you please.
 
 <br />
 

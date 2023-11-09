@@ -34,10 +34,10 @@ import DocsImage from "@site/src/components/DocsImage";
 ## Lua
 
 <DocsImage
-  src={require("/img/lua-logo.png").default}
-  width={200}
-  link="https://www.lua.org"
-        alt="Lua"
+src={require("/img/lua-logo.png").default}
+width={200}
+link="https://www.lua.org"
+alt="Lua"
 
 />
 
@@ -48,10 +48,10 @@ The only thing you really need to know to get started is the [Lua](https://www.l
 ## Unity
 
 <DocsImage
-  src={require("/img/unity-logo.png").default}
-  width={200}
-  link="https://www.unity.com"
-        alt="Unity"
+src={require("/img/unity-logo.png").default}
+width={200}
+link="https://www.unity.com"
+alt="Unity"
 
 />
 
@@ -64,10 +64,10 @@ Unity uses [C#](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/)
 ## MoonSharp
 
 <DocsImage
-  src={require("/img/moonsharp-logo.png").default}
-  width={200}
-  link="https://www.moonsharp.org/"
-  alt="Moonsharp"
+src={require("/img/moonsharp-logo.png").default}
+width={200}
+link="https://www.moonsharp.org/"
+alt="Moonsharp"
 
 />
 
@@ -90,15 +90,15 @@ I'll go through a quick walkthrough to get you familiar with the end-to-end flow
 2. Enable experimental features:
 
    <DocsImage
-     src={require("./img/experimental features enable.png").default}
-     width={500}
+   src={require("./img/experimental features enable.png").default}
+   width={500}
    />
 
 3. Exit the level options panel, then find and click on Memeorang Man. Then click the blue script button:
 
    <DocsImage
-     src={require("./img/memeorang man modscript button.png").default}
-     width={600}
+   src={require("./img/memeorang man modscript button.png").default}
+   width={600}
    />
 
 4. Create a new ModScript, and you'll see something like this:
@@ -108,22 +108,22 @@ I'll go through a quick walkthrough to get you familiar with the end-to-end flow
 5. Open the API Reference, and find the `gravityScale` field of the `Player`'s `Rigidbody2D` component:
 
    <DocsImage
-     src={require("./img/gravity scale api reference.png").default}
-     width={900}
+   src={require("./img/gravity scale api reference.png").default}
+   width={900}
    />
 
 6. Click the `Copy Example` button:
 
    <DocsImage
-     src={require("./img/copy example button.png").default}
-     width={400}
+   src={require("./img/copy example button.png").default}
+   width={400}
    />
 
 7. Paste that example into the script editor, and add the line `memeorangManRigidbody2D.gravityScale = 0.069` at the end to change the gravity:
 
    <DocsImage
-     src={require("./img/editor gravity example.png").default}
-     width={1200}
+   src={require("./img/editor gravity example.png").default}
+   width={1200}
    />
 
 8. Now exit the ModScript panel, and enter play mode. You should see low gravity while jumping with Memeorang Man. Congratulations.
@@ -165,8 +165,8 @@ So for example, in the [basic example](/docs/getting-started/basic-example), you
 In the Unity Editor UI, here's what it would look like to set the value of the `gravityScale` `member variable` on the `RigidBody2D` Component attached to the `Player` GameObject.
 
 <DocsImage
-  src={require("./img/rigidbody on player example.png").default}
-  width={800}
+src={require("./img/rigidbody on player example.png").default}
+width={800}
 />
 
 <br />
@@ -180,8 +180,8 @@ playerRigidbody.AddForce(new Vector2(69, 420))
 Also, `GameObjects` can be nested under each other as children, so for example there might be a `Right Leg` child GameObject under the root `Player` GameObject:
 
 <DocsImage
-  src={require("./img/unity gameobject hierarchy example.png").default}
-  width={400}
+src={require("./img/unity gameobject hierarchy example.png").default}
+width={400}
 />
 
 Which means the GameObject named `Right Leg` will have its position, rotation, and size be based on the `Player` GameObject.
@@ -219,8 +219,8 @@ import DocsImage from "@site/src/components/DocsImage";
 This is the API Reference:
 
 <DocsImage
-  src={require("./img/player weapons api reference.png").default}
-  width={1000}
+src={require("./img/player weapons api reference.png").default}
+width={1000}
 />
 
 <br />
@@ -248,8 +248,8 @@ This is where a little C# knowledge might come in handy.
 `Fields` are simplest kind of member, and the info section will just show the type of the field. That is all.
 
 <DocsImage
-  src={require("./img/field member info api reference.png").default}
-  width={300}
+src={require("./img/field member info api reference.png").default}
+width={300}
 />
 
 ### Properties
@@ -257,8 +257,8 @@ This is where a little C# knowledge might come in handy.
 A `property` is like a field, except it also specifies if you're allowed to just read it, or if you can also write to it. This is shown by the `Get` and `Set` labels. Properties with just `Get` means you can only read it.
 
 <DocsImage
-  src={require("./img/property member info api reference.png").default}
-  width={300}
+src={require("./img/property member info api reference.png").default}
+width={300}
 />
 
 ### Methods
@@ -266,8 +266,8 @@ A `property` is like a field, except it also specifies if you're allowed to just
 A `method` is a function on a Component that you can invoke. The info section will show you the parameters it takes as input, and the return type of the output.
 
 <DocsImage
-  src={require("./img/method member info api reference.png").default}
-  width={300}
+src={require("./img/method member info api reference.png").default}
+width={300}
 />
 
 ### Events
@@ -279,8 +279,8 @@ The info section for an event shows you the type of the event (which you don't r
 For your convenience, it also shows you more information about the second parameter of your event handler, since this is what you'll actually be using to access information passed by the event.
 
 <DocsImage
-  src={require("./img/event member info api reference.png").default}
-  width={300}
+src={require("./img/event member info api reference.png").default}
+width={300}
 />
 
 <br />
@@ -299,9 +299,9 @@ You may have noticed that some types in the info section are underlined with a d
 />
 
 <DocsImage
-  src={require("./img/player info detailed type info.png").default}
-  width={300}
-  preventCenteredLayout={true}
+src={require("./img/player info detailed type info.png").default}
+width={300}
+preventCenteredLayout={true}
 />
 
 </div>
@@ -313,8 +313,8 @@ Every member you select in the API reference also has an auto-generated example 
 The example will usually just be code to print out the member's value to the [console](/docs/guides/error-handling#console), so it's not really useful as an actual complete ModScript, but it helps give you boilerplate code to start with.
 
 <DocsImage
-  src={require("./img/member example api reference.png").default}
-  width={300}
+src={require("./img/member example api reference.png").default}
+width={300}
 />
 
 As you can also see, there are sometimes some useful buttons to open the relevant Unity documentation for the selected thing.
@@ -333,8 +333,8 @@ Let's talk a bit about how ModScripts are created, organized, and executed withi
 The ModScript panel is where you organize and write all your code:
 
 <DocsImage
-  src={require("./img/modscript editor example.png").default}
-  width={1000}
+src={require("./img/modscript editor example.png").default}
+width={1000}
 />
 
 On the left column, you have the "file" explorer, which shows all the ModScripts attached to the currently selected MemeItem. Each row has the ModScript title, and a number input field to set the execution order of the ModScript _within_ that MemeItem.
@@ -346,8 +346,8 @@ Then all the way on the right, there is a number input to set the execution orde
 There is also a dropdown at the top of the explorer to change the sort order the ModScripts show up:
 
 <DocsImage
-  src={require("./img/modscript explorer sort order.png").default}
-  width={300}
+src={require("./img/modscript explorer sort order.png").default}
+width={300}
 />
 
 ### Main Code Editor
@@ -359,8 +359,8 @@ If you want better a better coding experience, you should probably use a good co
 These are the buttons to delete the open ModScript, and undo & redo:
 
 <DocsImage
-  src={require("./img/modscript editor delete script.png").default}
-  width={200}
+src={require("./img/modscript editor delete script.png").default}
+width={200}
 />
 <br />
 
@@ -381,16 +381,16 @@ There are 2 layers of execution order.
    the top right of the ModScript panel:
 
 <DocsImage
-  src={require("./img/execution order in level.png").default}
-  width={400}
+src={require("./img/execution order in level.png").default}
+width={400}
 />
 <br />
 
 2. The execution order of a ModScript within a _MemeItem_. This is set by this number input field in the explorer:
 
 <DocsImage
-  src={require("./img/explorer item execution order.png").default}
-  width={400}
+src={require("./img/explorer item execution order.png").default}
+width={400}
 />
 
 <br />
@@ -407,8 +407,8 @@ If you want to write a ModScript that isn't necessarily related to a specific Me
 a `Meme Text` item you can label as something useful.
 
 <DocsImage
-  src={require("./img/dummy item for modscript.png").default}
-  width={200}
+src={require("./img/dummy item for modscript.png").default}
+width={200}
 />
 :::
 
@@ -565,10 +565,10 @@ So every MemeItem in the level has a unique ID, and you can copy that ID by pres
 
 ## Get Items By Type
 
-There may also be times where you want to do something to multiple MemeItems of a certain type. You can do this by using the `getItemsByType` function and passing the `MemeId`, since "type" in this context just refers to what MemeItem it is:
+There may also be times where you want to do something to multiple MemeItems of a certain type. You can do this by using the `getItemsByMemeId` function and passing the `MemeId`, since "type" in this context just refers to what MemeItem it is:
 
 ```lua {1}
-local chads = getItemsByType("Chad")
+local chads = getItemsByMemeId("Chad")
 
 for i, chad in ipairs(chads) do
     local chadArm = chad.transform.Find("Chad/bone_1/bone_2/bone_11") -- transform is a special type that comes pre-registered so you don't have to :0
@@ -576,7 +576,7 @@ for i, chad in ipairs(chads) do
 end
 ```
 
-`getItemsByType` returns a List (auto-converted to a Lua table) of all the MemeItems in your level that match that type. You can loop through and filter them and do as you please.
+`getItemsByMemeId` returns a List (auto-converted to a Lua table) of all the MemeItems in your level that match that type. You can loop through and filter them and do as you please.
 
 <br />
 <br />
@@ -597,7 +597,7 @@ So, I created a helper function `createInstance` that takes a [type name](https:
 
 ```lua {4}
 registerType('Player')
-local player = getItemsByType("MemeorangMan")[1]
+local player = getItemsByMemeId("MemeorangMan")[1]
 
 local newScale = createInstance("Vector3")
 newScale.x, newScale.y, newScale.z = 0.4, 2, player.transform.localScale.z
@@ -773,8 +773,8 @@ end
     <summary>Check out this in-depth diagram from the [Unity Documentation](https://docs.unity3d.com/Manual/ExecutionOrder.html) about lifecycle events and order of execution</summary>
 
 <DocsImage
-  src={"https://docs.unity3d.com/uploads/Main/monobehaviour_flowchart.svg"}
-  width={1500}
+src={"https://docs.unity3d.com/uploads/Main/monobehaviour_flowchart.svg"}
+width={1500}
 />
 
 </details>
@@ -816,14 +816,14 @@ end
 For example:
 
 ```lua {6}
-local existingFlappy = getItemsByType("FlappyBird")[1] -- requires flappy bird already in the level
+local existingFlappy = getItemsByMemeId("FlappyBird")[1] -- requires flappy bird already in the level
 local dummyQuaternion = createInstance("Quaternion")
 local posOffset = createInstance("Vector3")
 posOffset.x, posOffset.y = 2, 1
 
 local flappyClone = UnityObject.Instantiate(
     existingFlappy,
-    getItemsByType("MemeorangMan")[1].transform.position + posOffset,
+    getItemsByMemeId("MemeorangMan")[1].transform.position + posOffset,
     dummyQuaternion.identity, -- looky here, it's using a static member! (more on this later)
     existingFlappy.transform.parent)
 ```
@@ -968,14 +968,14 @@ This can be quite nice, since you can deal with collections entirely in the Lua 
 For example, in this snippet:
 
 ```lua
-local illuminatis = getItemsByType("Illuminati") -- illuminatis is a table
+local illuminatis = getItemsByMemeId("Illuminati") -- illuminatis is a table
 local illuminatiSpriteRens = {} -- define a new Lua table here too coz why not
 for idx, illuminati in ipairs(illuminatis) do
     illuminatiSpriteRens[idx] = illuminati.GetComponent('SpriteRenderer')
 end
 ```
 
-the `getItemsByType` function has been implemented on the C# side to return a `List<GameObject>`, which is a C# `collection`. And because it gets converted to a `table` in your ModScript, you can use Lua's `ipairs` to loop through it.
+the `getItemsByMemeId` function has been implemented on the C# side to return a `List<GameObject>`, which is a C# `collection`. And because it gets converted to a `table` in your ModScript, you can use Lua's `ipairs` to loop through it.
 
 However, there can be problems using tables in some cases.
 
@@ -990,7 +990,7 @@ So, if you try and pass a Lua table to a Unity method, it gets automatically con
 So after calling that method, the Lua table you passed in will be unchanged, which is probably not what you want. For example, this wouldn't work:
 
 ```lua {2,3}
-local audioSource = getItemsByType("HeNeedsSomeMilk")[1].GetComponent("AudioSource")
+local audioSource = getItemsByMemeId("HeNeedsSomeMilk")[1].GetComponent("AudioSource")
 local audioSamples = {} -- here we define a lua table
 audioSource.clip.GetData(audioSamples, 0); -- here we pass that table to a Unity method that expects an array
 ```
@@ -1017,7 +1017,7 @@ Here's how you could use it:
 registerType("AudioSource")
 registerType("AudioClip")
 
-local audioSource = getItemsByType("HeNeedsSomeMilk")[1].GetComponent("AudioSource") -- needs a "HeNeedsSomeMilk" item in the level
+local audioSource = getItemsByMemeId("HeNeedsSomeMilk")[1].GetComponent("AudioSource") -- needs a "HeNeedsSomeMilk" item in the level
 local samplesCount = audioSource.clip.samples * audioSource.clip.channels
 local samples = createCollection("System.Single[]", {arrayLength = samplesCount}) -- arrays are a special case from other collections that don't take generic arguments, and have a fixed, known size
 
@@ -1045,7 +1045,7 @@ Because `createCollection` needs to (interally) call `registerType` with the pro
 
 Or you could set the execution order of your scripts with `createCollection` to something really high, so it runs after everything else and doesn't affect them.
 
-It is a bit annoying, but there's not much I can do about it. At least it probably won't a problem too much of the time, I don't know why you'd need to create a collection of GameObjects, which would change the return type of `getItemsByType`
+It is a bit annoying, but there's not much I can do about it. At least it probably won't a problem too much of the time, I don't know why you'd need to create a collection of GameObjects, which would change the return type of `getItemsByMemeId`
 
 </details>
 
@@ -1064,8 +1064,8 @@ When an error occurs, it will automatically open the console to show the error m
 This is the console window:
 
 <DocsImage
-  src={require("./img/console with error example.png").default}
-  width={1000}
+src={require("./img/console with error example.png").default}
+width={1000}
 />
 
 It's used to log output from the `print` or `printTable` functions in your ModScripts, as well as show error messages.
@@ -1098,8 +1098,8 @@ print(lebronjaaaaa a a a  )
 You will get this error message:
 
 <DocsImage
-  src={require("./img/console error message line.png").default}
-  width={1000}
+src={require("./img/console error message line.png").default}
+width={1000}
 />
 
 <br />
@@ -1178,7 +1178,7 @@ Caching just means storing the result of a function (or method) call to a variab
 Especially the calls for [getting items](/docs/guides/getting-items)
 
 ```lua
-local snoopDoggs = getItemsByType("SnoopDogg") -- snoopDoggs stores the result of the getItemsByType function call so it doesn't need to scan the level every time.
+local snoopDoggs = getItemsByMemeId("SnoopDogg") -- snoopDoggs stores the result of the getItemsByMemeId function call so it doesn't need to scan the level every time.
 ```
 
 ## Cleanup
@@ -1277,8 +1277,8 @@ It is of utmost importance that you test your level in "Play Created Level", whi
 Keeping backups of your level at regular intervals is very important unless you want to lose all your hard work. You can export a level directly from the Level Builder menu by pressing this button:
 
 <DocsImage
-  src={require("./img/exit or publish button.png").default}
-  width={100}
+src={require("./img/exit or publish button.png").default}
+width={100}
 />
 
 ### Git repo
@@ -1360,8 +1360,8 @@ Once you've verified your modded level works in "Play Created Level" mode, you'l
 When you publish a level with ModScripts, it will show up in "Browse Published Levels" with a blue ModScript icon over the experimental mode enabled icon.
 
 <DocsImage
-  src={require("./img/level preview with mod.png").default}
-  width={350}
+src={require("./img/level preview with mod.png").default}
+width={350}
 />
 
 <br />
@@ -1402,8 +1402,8 @@ So here's a rundown of how you can interact with the community and me for anythi
 Add ModScripts from all published levels get uploaded to the Community Mods panel:
 
 <DocsImage
-  src={require("./img/community mods panel.png").default}
-  width={1300}
+src={require("./img/community mods panel.png").default}
+width={1300}
 />
 
 You can sort by popularity or date, filter by meme type, published level id, script title, and even bring out a secret panel from the top left to filter by script hash.
@@ -1443,4 +1443,3 @@ If you wanna talk to me about meme game, drop by in one of my livestreams and sa
 Or just comment on one of my videos, i'll do my best to respond.
 
 The channel is called REEEthan, here is the link: [https://www.youtube.com/channel/UCQ6ZI3Hh5gY4Qxw5Zk0zgWQ](https://www.youtube.com/channel/UCQ6ZI3Hh5gY4Qxw5Zk0zgWQ)
-
