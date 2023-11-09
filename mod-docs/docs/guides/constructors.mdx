@@ -16,7 +16,7 @@ newScale.x, newScale.y, newScale.z = 0.4, 2, player.transform.localScale.z
 player.transform.localScale = newScale
 ```
 
-Notice how the values are assigned after construction. All structs in C# have a default parameterless constructor, why is why you can get away with just constructing from the struct type name alone. Pretty much all Unity structs should let you modify the member values after.
+Notice how the values are assigned after construction. All structs in C# have a default parameterless constructor, which is why you can construct from the struct name alone. Pretty much all Unity structs should let you modify their member values after construction.
 
 Some useful structs you may commonly use might include:
 
@@ -25,4 +25,4 @@ Some useful structs you may commonly use might include:
 - `Quaternion`
 - `Color`
 
-...and more. Remember to consult the Unity [docs](https://docs.unity.com/) for more information
+...and maybe a lot more. Remember to consult the [Unity docs](https://docs.unity.com/) for more information

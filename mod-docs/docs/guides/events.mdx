@@ -1,8 +1,8 @@
 # Events
 
-Events are a type of member on a C# class. You can subscribe to events in your ModScript to execute code in reaction to something happening.
+Events are a type of member you can subscribe to in your ModScripts to execute code in reaction to something happening.
 
-Your event handler needs to have 2 parameters:
+You create an event handler that takes 2 parameters:
 
 1. `sender` - The C# object that raised the event
 2. `eventArgs` - An object that sometimes contains information about the event
@@ -13,7 +13,7 @@ To subscribe to an event, you need to first define the event handler function th
 
 ```lua {8,15}
 registerType("HealthChangedEventArgs")
-registerType("IHasHealth")
+registerType("IHasHealth") -- this is an example of a YOMG2 interface
 registerType("Player")
 registerType("Vector3")
 
@@ -36,7 +36,7 @@ You can only subscribe to events that match the standard EventHandler pattern (w
 
 ## Unsubscribing from Events
 
-It is extremely important you unsubscribe from all events you've subscribed to. Usually, you would do this when exiting the level, which is when the [`cleanup`](/docs/guides/lifecycle-events#cleanup) function is called, but you can do this whenever:
+It is extremely important that you unsubscribe from all events you've subscribed to. Usually, you would do this when exiting the level, which is when the [`cleanup`](/docs/guides/lifecycle-events#cleanup) function is called:
 
 ```lua {3}
 -- ...code from above
@@ -44,3 +44,5 @@ function cleanup()
     healthComponent.HealthChanged.remove(healthChangedHandler)
 end
 ```
+
+...but you can do this whenever.

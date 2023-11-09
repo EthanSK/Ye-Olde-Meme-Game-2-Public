@@ -8,21 +8,21 @@ GameObjects are like people. They have lifecycle events.
 
 In ModScript land, these lifecycle events are split into 2 categories:
 
-1. ModScript-defined handlers
+1. Lua functions
 2. `EventsForModScript` Component
 
 The reason for this split is performance and convenience related.
 
-## ModScript-defined handlers
+## Lua functions
 
-There are 4 ModScript-defined handlers you can implement in your ModScripts:
+There are 4 Lua function lifecycle events you can implement in your ModScripts:
 
 1. `update()` - called every frame (fps can vary dramatically)
 2. `fixedUpdate()` - called every physics step (fixed at 30fps)
 3. `lateUpdate()` - called every frame, after all `update`s have been called across all scripts
 4. `cleanup()` - called when exiting the level
 
-Just define them as normal Lua functions in your ModScript, and they will be called automatically at the appropriate time.
+To use one, just define it as normal Lua function in your ModScript, and it will be called automatically at the appropriate time.
 
 ```lua
 function lateUpdate()
@@ -32,15 +32,16 @@ end
 
 ### Cleanup
 
-The `cleanup` function gets called when "exiting the level", in the same order as the scripts were started.
+The `cleanup` function gets called when exiting the level, in the same order as the scripts were started.
 
 ```lua
 function cleanup()
   -- unsubscribe from all events here with <some event>.remove()
+  -- do all other cleaning up here
 end
 ```
 
-In this context "exiting the level" means:
+In this context exiting the level means:
 
 - Level Builder: after exiting play mode
 - Play Created Level: after leaving the scene
@@ -51,9 +52,9 @@ Make sure you cleanup _all_ events you subscribed to in your scripts, and everyt
 
 ## EventsForModScript Component
 
-All the other lifecycle events you'd normally use in Unity are implemented in a separate Component in the YOMG2 codebase, called `EventsForModScript`.
+All the other [lifecycle events that you'd normally use in Unity](https://docs.unity3d.com/Manual/ExecutionOrder.html) are accessible through a separate Component in the YOMG2 codebase, called `EventsForModScript`.
 
-It hooks Unity's [lifecycle events](https://docs.unity3d.com/Manual/ExecutionOrder.html) up to native C# events, which is covered in the [Events](/docs/guides/events) section.
+It hooks Unity's lifecycle events up to native C# events, which which you can [subscribe to in your ModScript](/docs/guides/events#subscribing-to-events) section.
 
 Here are all the events you can subscribe to, copied and pasted from the C# Component directly:
 
@@ -81,7 +82,7 @@ public event EventHandler OnMouseDownEvent = delegate { };
 public event EventHandler OnMouseDragEvent = delegate { };
 ```
 
-You'll need to add the `EventsForModScript` to your GameObject that you want events on, like in this example:
+You'll need to add the `EventsForModScript` Component to the GameObject you want these lifecycle events on, like in this example:
 
 ```lua {8,15,18}
 registerType("EventsForModScript")
@@ -95,7 +96,7 @@ local events = curItem.AddComponent(getType("EventsForModScript"))
 
 function collisionHandler(sender, eventArgs)
     local otherCollider = eventArgs.Other -- look at CollisionEventArgs pasted above
-    print("other collision: ", otherCollider.gameObject.GetComponent("MemeItem").Data.Name)
+    print("other collider GO name: ", otherCollider.gameObject.name) -- NEVER actually rely on the root GameObject name for anything (assume it's randomly generated), it's only for demonstration purposes here
 end
 
 events.OnCollisionEnterEvent.add(collisionHandler)
@@ -114,7 +115,3 @@ end
 />
 
 </details>
-
-## ModScripts themselves
-
-When the level starts being played, the ModManager in the game will go through all MemeItems with ModScripts in the level in execution order, and for each one, execute each ModScript in script execution order. As mentioned, the same order is used for [cleanup](#cleanup).
