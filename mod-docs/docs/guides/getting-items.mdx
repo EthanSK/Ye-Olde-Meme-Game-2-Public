@@ -8,40 +8,38 @@ How do you actually connect your ModScript to a MemeItem? You use one of these f
 
 To get the MememItem that the ModScript is attached to, you can use the `getCurrentItem` function in your script:
 
-```lua {1}
-local datBoi = getCurrentItem()
-
-local datBoiSpriteRenderer = datBoi.GetComponent("SpriteRenderer")
+```lua {2}
 registerType("SpriteRenderer")
+local datBoi = getCurrentItem()
+local datBoiSpriteRenderer = datBoi.GetComponent("SpriteRenderer")
 datBoiSpriteRenderer.flipX = true
 ```
 
-`getCurrentItem` returns the `GameObject` of the MemeItem.
+`getCurrentItem` returns the `GameObject` of the retrieved MemeItem.
 
 ## Get Item By ID
 
-There are times where you might want a ModScript to access _another_ MemeItem. This is done by using `getItemById` and passing the ID.
+There are times where you might want to access a _different_ MemeItem to that of the attached ModScript. This can be done by using `getItemById` and passing the ID as an argument:
 
-```lua {1}
-local chargeTheyPhone = getItemById("AllTheyKnowIsChargeTheyPhone-388114-933a")
-
-local chargeTheyPhoneText = chargeTheyPhone.GetComponent("TMPro.TMP_Text")
+```lua {2}
 registerType("TMPro.TMP_Text") -- TextMeshPro is weird, u gotta register like this. TMP_Text is the base type of all TextMeshPro components, apply similar logic to other erroring things in the future ig.
+local chargeTheyPhone = getItemById("AllTheyKnowIsChargeTheyPhone-388114-933a")
+local chargeTheyPhoneText = chargeTheyPhone.GetComponent("TMPro.TMP_Text")
 chargeTheyPhoneText.text = "reeeeeeepeeepeeepoopoo."
 ```
 
-So every MemeItem in the level has a unique ID, and you can copy that ID by pressing the copy icon next to the ID at the top of the Level Builder UI:
+To get this ID, you can copy it by pressing the copy icon next to the ID at the top of the Level Builder UI:
 
 <DocsImage src={require("./img/copy ID example.png").default} width={400} />
 
 ## Get Items By Type
 
-There may also be times where you want to do something to multiple MemeItems of a certain type. You can do this by using the `getItemsByType` function and passing the `MemeId`, since "type" in this context just refers to what MemeItem it is:
+There may also be times where you want to do something to multiple MemeItems of a certain type. You can do this by using the `getItemsByType` function and passing the `MemeId`, since "type" in this context just means what MemeItem is it:
 
-```lua {1}
+```lua {2}
+registerType("Vector3")
 local chads = getItemsByType("Chad")
-
-for i, chad in ipairs(chads) do
+for i, chad in ipairs(chads) do -- make all their right arms tiny
     local chadArm = chad.transform.Find("Chad/bone_1/bone_2/bone_11") -- transform is a special type that comes pre-registered so you don't have to :0
     chadArm.transform.localScale = chadArm.transform.localScale * 0.420
 end
@@ -49,9 +47,12 @@ end
 
 `getItemsByType` returns a List (auto-converted to a Lua table) of all the MemeItems in your level that match that type. You can loop through and filter them and do as you please.
 
-<br />
+{" "}
+
 <br />
 
 :::tip
-To keep a nice smooth framerate for the players of your level, it is important you cache as much as you can. Caching just means storing the result of an operation so it doesn't have to recalculate every time if it doesn't need to. Just store the result of getting an item into a variable, as shown above. More is discussed in the [performance](/docs/guides/performance#caching) section.
+To keep a nice smooth framerate, it is important you cache as much as you can.
+
+Caching just means storing the result of an operation so it doesn't have to recalculate every time if it doesn't need to. Just store the result of getting an item into a variable, as shown above. More is discussed in the [performance](/docs/guides/performance#caching) section.
 :::
