@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // Depending on the Node.js version, set an appropriate target
+    "module": "CommonJS", // Node.js uses CommonJS
+    "strict": true, // Enable all strict type-checking options
+    "esModuleInterop": true, // Enables ES6-style module import syntax
+    "forceConsistentCasingInFileNames": true, // Ensure case matches exactly between imports and files
+    "skipLibCheck": true, // Skip type checking of all declaration files (*.d.ts)
+    "outDir": "./dist", // Output directory for the compiled files
+    "rootDir": "./", // Root directory of the project
+    "resolveJsonModule": true, // Allow importing json files
+    "allowSyntheticDefaultImports": true // Allow default imports from modules with no default export
+  },
+  "include": [
+    "scripts/**/*.ts" // Include your TypeScript files in the scripts folder
+  ],
+  "exclude": [
+    "node_modules", // Exclude the node_modules directory
+    "**/*.test.ts" // Exclude test files
+  ]
+}

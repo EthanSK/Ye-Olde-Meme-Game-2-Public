@@ -8,20 +8,20 @@ Lua doesn't have a concept of types. But C# heavily relies on it. So we somehow 
 
 ## Register Type
 
-If you want to use any member of a Component, you will have to register its C# type first. This is done by calling the `registerType` function, and passing the [type name](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/specifying-fully-qualified-type-names) as an argument.
+If you want to use a member of some Component, you will first need to register the Component's type. This is done by calling the `registerType` function, and passing the type name as an argument.
 
-For example, here you will be enabling your script to access members in the `Rigidbody2D` Component:
+For example, doing this will allow your script to use members of the `Rigidbody2D` Component:
 
 ```lua
 registerType("Rigidbody2D")
 ```
 
-There are a lot of different cases where you have to do this, and I don't really know all of them. But anyway, `registerType` should be the first thing you check you didn't forget if you get an error.
+`registerType` should be the first thing to check you haven't forgetten if you get an error.
 And don't worry, it's ok if you register the type more than you need, you're not gonna get 'rona.
 
 :::tip
 
-You can also register nested types by using '+'
+You can register nested types by using '+'
 
 ```lua
 registerType("EventsForModScript+Collision2DEventArgs")
