@@ -13,13 +13,13 @@ This is the API Reference:
 
 It's an in-game, auto-generated, fully-interactable documentation of everything you can use in your ModScripts, right where you need it. Pretty cool.
 
-In the leftmost pane, you'll see all the MemeItems in the game, as well as some other items I've gone and added that you might wanna add mods to.
+In the leftmost column, you'll see all the MemeItems in the game that you can retrieve in your ModScripts.
 
-In the pane on the right of it, you'll see the hierarchy of GameObjects that make up the selected MemeItem.
+In the column just to the right of it, you'll see the hierarchy of parent & child GameObjects that the selected MemeItem consists of.
 
-Then in the pane next to that, you'll see all the Components on the selected GameObject.
+Then in the colmun next to that, you'll see all the Components attached to the selected GameObject.
 
-And then the last pane shows all the member variables (fields and properties), methods, and events on the selected Component.
+Then the last column shows all the member variables (fields and properties), methods, and events on the selected Component.
 
 And all the way on the right, you have the member info section.
 
@@ -27,9 +27,11 @@ And all the way on the right, you have the member info section.
 
 This section shows you everything you need to know about the selected member, and how you can use it in your ModScripts.
 
+This is where a little C# knowledge might come in handy.
+
 ### Fields
 
-Fields the simplest kind of member, and the info section for them will just show the type of that field. That is all.
+`Fields` are simplest kind of member, and the info section will just show the type of the field. That is all.
 
 <DocsImage
   src={require("./img/field member info api reference.png").default}
@@ -38,7 +40,7 @@ Fields the simplest kind of member, and the info section for them will just show
 
 ### Properties
 
-A property is like a field, except it specifies if you're allowed to just read it, or if you can also write to it. This is shown by the `Get` and `Set` labels. Properties with just `Get` means you can only read it.
+A `property` is like a field, except it also specifies if you're allowed to just read it, or if you can also write to it. This is shown by the `Get` and `Set` labels. Properties with just `Get` means you can only read it.
 
 <DocsImage
   src={require("./img/property member info api reference.png").default}
@@ -47,7 +49,7 @@ A property is like a field, except it specifies if you're allowed to just read i
 
 ### Methods
 
-A method is a function that you can call on the selected Component. The info section will show you the parameters it takes as input, and the return type of the output.
+A `method` is a function on a Component that you can invoke. The info section will show you the parameters it takes as input, and the return type of the output.
 
 <DocsImage
   src={require("./img/method member info api reference.png").default}
@@ -56,16 +58,24 @@ A method is a function that you can call on the selected Component. The info sec
 
 ### Events
 
-An event is a special kind of member that you can subscribe to in your ModScript, and then your subscription handler is called whenever that event gets triggered. The info section shows you the type of the event (which you don't really need to care about), and the parameters your subscription handler needs to take as input. For your convenience, it also shows you more detailed member information about the second parameter of your handler, since this is what you'll actually be using. More information about events can be found [here](/docs/guides/events).
+An `event` is a special kind of member that you can subscribe to in your ModScript, and then you create an event handler that is called whenever the event gets triggered.
+
+The info section for an event shows you the type of the event (which you don't really need to care about), and the parameters your event handler function needs to take as input.
+
+For your convenience, it also shows you more information about the second parameter of your event handler, since this is what you'll actually be using to access information passed by the event.
 
 <DocsImage
   src={require("./img/event member info api reference.png").default}
   width={300}
 />
 
+<br />
+
+More information about events can be found [here](/docs/guides/events).
+
 ### Detailed Type Info
 
-You may have noticed that some type in the info section are underlined and a darker shade of blue. This means you can click on it to see more detailed information about that type.
+You may have noticed that some types in the info section are underlined with a darker shade of blue. This means you can click on it to see more detailed information about that type.
 
 <div className="centered-container" style={{gap: '2em'}}>
 <DocsImage
@@ -84,7 +94,9 @@ You may have noticed that some type in the info section are underlined and a dar
 
 ### Auto-generated Example
 
-Every member you select in the API reference will also have an auto-generated example that you can copy and paste as a starting point. The example is usually just code to print out the member's value to the [console](/docs/guides/error-handling#console), so it's not really useful as an actual complete ModScript, but it helps with giving you boilerplate code for you to start with.
+Every member you select in the API reference also has an auto-generated example that you can copy and paste as a starting point.
+
+The example will usually just be code to print out the member's value to the [console](/docs/guides/error-handling#console), so it's not really useful as an actual complete ModScript, but it helps give you boilerplate code to start with.
 
 <DocsImage
   src={require("./img/member example api reference.png").default}
@@ -92,3 +104,6 @@ Every member you select in the API reference will also have an auto-generated ex
 />
 
 As you can also see, there are sometimes some useful buttons to open the relevant Unity documentation for the selected thing.
+
+:::note
+The API reference is completely auto-generated and some stuff might be wrong, especially in the auto-generated example, so don't take it as gospel.

@@ -21,12 +21,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Getting Started",
-      link: {
-        type: "generated-index",
-        title: "Getting Started",
-        description: "Get started with ModScripting in Ye Olde Meme Game 2",
-        slug: "/getting-started",
-      },
+
       items: [
         `${gettingStartedFolder}/prerequisites`,
         `${gettingStartedFolder}/basic-example`,
@@ -36,13 +31,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Tutorial",
-      link: {
-        type: "generated-index",
-        title: "Tutorial",
-        description:
-          "Tutorials (in order) for learning about ModScripting in Ye Olde Meme Game 2",
-        slug: "/tutorial",
-      },
+
       items: [
         `${guidesFolder}/game-structure`,
         `${guidesFolder}/api-reference`,
