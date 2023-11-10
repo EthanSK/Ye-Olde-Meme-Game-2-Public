@@ -59,12 +59,14 @@ const sidebars: SidebarsConfig = {
         type: "generated-index",
         title: "Examples",
         description:
-          "Here are some example ModScripts you can use for inspiration.",
+          "Here are some example ModScripts you can use for inspiration. Please submit pull requests with more good examples to add here!",
         slug: "/examples",
       },
       items: [
         `${examplesFolder}/illuminati-flip`,
         `${examplesFolder}/player-proximity-detector`,
+        `${examplesFolder}/change-meme-man-head-scale`,
+        `${examplesFolder}/more-to-come`,
       ],
     },
   ],
