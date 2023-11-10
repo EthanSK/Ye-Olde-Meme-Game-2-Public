@@ -1,0 +1,38 @@
+# Change Meme Man Head Scale
+
+This ModScript changes the scale of Memorang Man's head, and does so for any new players that are spawned during the game (coz of say the copypaste keyboard).
+
+```lua
+registerType("Vector3")
+registerType("PlayerManager")
+registerType("Player")
+
+function doTheHeadTingBrudda(player)
+    handleErrors(function()
+    local head = player.transform.Find('PlayerArt').Find('centerBody').Find('neck').Find('head')
+    local headScale = createInstance("Vector3")
+    headScale.x, headScale.y, headScale.z = 0.8, 4, 1 -- x and y and flipped intuitively on the player
+    head.transform.localScale = headScale
+    end)
+end
+
+local men = getItemsByMemeId("MemeorangMan")
+for i, man in ipairs(men) do
+  doTheHeadTingBrudda(man)
+end
+
+-- When new player is spawned in, we'll wanna change their head too
+
+local playerManager = UnityObject.FindFirstObjectByType(getType("PlayerManager"))
+
+function handlePlayersChanged(sender, eventArgs)
+    local player = eventArgs.Player
+    doTheHeadTingBrudda(player.gameObject)
+end
+
+playerManager.PlayersChanged.add(handlePlayersChanged)
+
+function cleanup()
+    playerManager.PlayersChanged.remove(handlePlayersChanged)
+end
+```

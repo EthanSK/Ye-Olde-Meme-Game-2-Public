@@ -15,7 +15,7 @@ registerType("EventsForModScript")
 local worldObj = getCurrentItem().transform.parent
 local enemies = worldObj.GetComponentsInChildren(getType("Enemy"))
 
-local proximityDetectors = {} -- so we can unsubscribe in cleanup even on enemies that were destroyed mid game (where .GetComponent doesn't work)
+local proximityDetectors = {} -- so we can unsubscribe in cleanup even on enemies that were destroyed mid game (where .GetComponent doesn't work, but C# PlayerProximityDetector script still exists in memory, so we will store references to those here)
 local gravityScalesBefore = {} --dictionary where key is id wihtin level and v
 
 function handleProximityEvent(sender, eventArgs)

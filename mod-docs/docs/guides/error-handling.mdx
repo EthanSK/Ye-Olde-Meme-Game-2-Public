@@ -102,6 +102,32 @@ lol
 
 This just means that the error occured in the `poo` function, which was called by the `pee` function, which was called by the `lol` function. That kind of information can be very useful for debugging.
 
+## Improperly Handled Errors
+
+While the modding system does its best to wrap everything in it's own try-catch block that provides you with useful error messages to trace down the source of the error, it sometimes isn't able to do so on it's own.
+
+[Event handlers](/docs/guides/events) are an example of where this happens. If an error occurs in your event handler function, you will see the generic Unity error message in the console, and it won't tell you exactly where the issue came from.
+
+So to remedy this, I made a `handleErrors` function that lets you pass in an anonymous function, and it will execute in the aforementioned try-catch block. Now if an error occurs, it will show you the proper error message in the console:
+
+```lua {4}
+registerType("Player")
+
+function handlePlayerTryingToJumpChange(sender, eventArgs)
+    handleErrors(function() -- pass an anonymous function to execute in the try-catch block
+      print("player trying to jump changed")
+      print(thiswillcause.anerror) -- this will cause an error
+    end)
+end
+
+local player = getCurrentItem().GetComponent("Player")
+player.TryingToJumpChange.add(handlePlayerTryingToJumpChange)
+
+function cleanup()
+    player.TryingToJumpChange.remove(handlePlayerTryingToJumpChange)
+end
+```
+
 ## Implications
 
 Here are some implications of errors.
