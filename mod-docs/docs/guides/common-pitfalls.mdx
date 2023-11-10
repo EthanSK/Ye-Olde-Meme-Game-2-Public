@@ -4,6 +4,12 @@ import DocsImage from "@site/src/components/DocsImage";
 
 Here are some common issues you may run in to, or things you may forget to do.
 
+## Not asking ChatGPT for help
+
+Despite the mockery of ClosedAI in Campaign, the [YOMG2 Modding Assistant](https://chat.openai.com/g/g-psxzxyWuu-ye-olde-meme-game-2-modding-assistant), and even just regular ChatGPT, will probably be your best bet for helping you write your ModScripts. I strongly recommend ChatGPT Plus, it is _significantly_ better than the free one.
+
+The modding assistant has been trained on everything in these docs and tutorials, in addition to it's vast knowledge about Unity, C#, Lua, and MoonSharp, so it would be a form of self harm to not use it.
+
 ## Not testing in "Play Created Level"
 
 It is of utmost importance that you test your level in "Play Created Level", which is how the end user will be playing your level. The environment is different to the Level Builder, so there could very likely be things you didn't consider that don't work outside the Level Builder. At the end of the day, you are responsible for the quality of your modded level, so don't waste your time building crap.
@@ -21,9 +27,9 @@ Keeping backups of your level at regular intervals is very important unless you 
 
 You should even set Git repo to backup & keep track of changes to your level files.
 
-Just set up the git repo in the `<...start of Application persistent data path>/ETGgames/Ye Olde Meme Game 2/Levels/UserEditedLevels`. Find out what the Application persistent data path is [here](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html)
+Just set up the git repo in the `<...start of Application persistent data path>/ETGgames/Ye Olde Meme Game 2/Levels/UserEditedLevels`. Find out what the Application persistent data path can be found [here](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html).
 
-and only track the desired level `.meme` files with a [.gitignore](https://git-scm.com/docs/gitignore) file that looks something like this:
+You should only track the desired level `.meme` files by using a [.gitignore](https://git-scm.com/docs/gitignore) file that looks something like this:
 
 ```
 # Ignore everything
@@ -32,46 +38,36 @@ and only track the desired level `.meme` files with a [.gitignore](https://git-s
 # But not these files...
 !lvl_2a7b3f30-6aec-41d8-9904-7168da55da70.meme
 !lvl_5bd69420-c6f9-4c22-a220-e8119dbce6ef.meme
-# ...the rest of your files you care about
+# ...the rest of your files you want to keep track of
 ```
 
-You may have open a few `.meme` files to see which one matches the one you're working on, the level metadata is at the top.
-
-The level file can be found in the
+You may have to open a few `.meme` files to see which one matches the one you're working on - the level metadata is at the top.
 
 ## Not keeping your code structure clean and maintainable
 
 It's very easy to end up writing spaghetti code, and code that's hard to keep track of. While this isn't a coding tutorial, I will say this:
 
 - Name everything nice and clearly so it explains the purpose of itself in the name
-- Try and make reusable functions so you avoid repetition, make the code more readable, and only have to change things in one place
-- Split your code into multiple ModScripts to keep things organised for youself when coming back to it
+- Try and make reusable functions so it avoids repetition, keeps the code more readable, and means you only have to change things in one place in order to affect everything using it.
+- Split your code into multiple ModScripts to keep things organised
 - Use comments with `--` to explain what you code is doing, especially if it's not obvious
 - idk go watch some yt tuts or smth
 
 ## Forgetting to register types
 
-It's very easy to forget to [registerType](/docs/guides/types) before trying to access a member of that type. Make sure you always do this, and try to do so in every ModScript instead of relying on some type that was `registerType`d (globally) in another script.
+It's very easy to forget to [registerType](/docs/guides/types#register-type) before trying to access a member of that type. Make sure you always do this, and try to do so in every ModScript instead of relying on some type that was `registerType`d (globally) in another script.
 
 ## Not thinking about performance
 
-It's easy to not think about [performance](/docs/guides/performance) when writing scripts, and it's even easier to accidentally have a terribly perfoming level on other players' devices. Make sure you have considered everything in the performance section thoroughly.
+It's easy to not think about [performance](/docs/guides/performance) when writing scripts, and it's even easier to accidentally have a terribly perfoming level on other players' devices. Make sure you have considered everything in the [performance section](/docs/guides/performance) thoroughly.
 
-Do you want people to dislike your level and give you a bad ranking on your user profile page?
+Do you want people to dislike your level and tarnish your ranking on your user profile page?
 
 ## Not approaching debugging methodically
 
 Coding can get hard sometimes. Debugging can be a pain, but it can also be fun (yes, I know what you're thinking).
 
-To make it more pleasant experience, you should used the `print` and `printTable` helper functions to log anything you're not sure about to the console. This is how you debug. Get used to it.
-
-## Not asking ChatGPT for help
-
-Despite the mockery of ClosedAI in Campaign, [ChatGPT](https://chat.openai.com/) will probably be your best bet for helping you write your ModScripts. I strongly recommend ChatGPT Plus, it is _significantly_ better than the free one.
-
-Now while Ye Olde Meme Game 2 is still in the early days, ChatGPT probably hasn't been trained on this documentation, or any information about the game. So you should copy and paste the documentation page you're dealing with into ChatGPT, and then give it your code or specific problem.
-
-But also, ChatGPT has been trained very well on Unity and C#, and even MoonSharp, so questions related to that should be answered very well without needing more information.
+To make it more pleasant experience, you should used the `print` and `printTable` helper functions to log anything you're not sure about to the console.
 
 ## Not asking the community for help
 

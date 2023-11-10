@@ -3,30 +3,32 @@ import { featureRequestUrl } from "@site/src/constants";
 
 # Safety & Security
 
-At the end of the day mate, I'm just trying to give you as much freedom as humanly possible to do whatever the flying flip you want.
+At the end of the day, I'm just trying to give you as much freedom as humanly possible to do whatever the flying frick you want.
 
-But at the same time, I'm also very concerned over the safey of players of my game.
+But at the same time, I'm also very concerned over the safey of the players of my game.
 
-So I've done my best to balance freedom with security. This has mainly been done through a combination of whitelisting and sandboxing.
+So I've done my best to balance freedom with safety. This has mainly been done through a combination of whitelisting and sandboxing.
 
 ## Whitelisting
 
-Whitelisting is a way for me to manually specify what types you can use, based on the following C# things in your ModScripts:
+Whitelisting is a way for me to manually specify what types you can use, based on the following C# concepts, in your ModScripts:
 
 - Namespaces
 - Base Types
 - YOMG2 Singletons
 - Assembly prefixes
 
+Here is the whitelist again, for your convenience:
+
 <Whitelist />
 
-I think this is a pretty fair balance of freedom, as there's nothng in any of the included types that would allow for network access, operating system access, or input/output.
+I think this is a pretty fair balance of freedom, as there's nothing in any of the included types that would allow for network access, operating system access, or input/output.
 
 It essentially allows you access to most Unity code and most YOMG2 code, and some specific, harmless C# `System` libraries.
 
 ## Sandboxing
 
-Sandboxing is a way to restrict the environment your ModScript runs in. It is MoonSharp, and currently is set to `Preset_SoftSandbox` in this trimmed down enum:
+Sandboxing is a way to restrict certain access to the environment your ModScript runs in. It is implemented by MoonSharp, and I've currently set it to `Preset_SoftSandbox` in this trimmed down enum:
 
 ```csharp {5}
 [Flags]
@@ -42,10 +44,10 @@ public enum CoreModules
 }
 ```
 
-If you are advanced enough to know what all the enum case names mean, this should make sence to you. Otherwise, look at the [MoonSharp docs for it](https://www.moonsharp.org/sandbox.html)
+If you are advanced enough to know what all the enum cases mean, this should make sense to you. Otherwise, if interested, look at the [MoonSharp sandboxing docs](https://www.moonsharp.org/sandbox.html).
 
 ## Disagree? Please tell me.
 
 If you can come up with a good reason as to why any of the above allows for a significant security risk to players, please create a <a target="_blank" href={featureRequestUrl}>bug report</a> and I'll do my best to address it.
 
-At the end of the day, I don't care about gameplay quality , I only care about the safety of the player, and making sure they can't be hacked, network access is denied for sending sensitive data to a hacker, and sensitive file information can't be written to or read on the disk. And of course it shouldn't be allowed to manipulate any of the user's OS or software.
+At the end of the day, I don't care about gameplay quality - that's on you. I only care about the safety of the player, and making sure they can't be hacked, i.e. network access is denied for sending sensitive data from their device to a hacker and sensitive file information can't be written to or read from the disk. And of course it shouldn't be allowed to manipulate any of the user's OS or software.
