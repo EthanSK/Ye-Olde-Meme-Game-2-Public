@@ -62,7 +62,10 @@ const sidebars: SidebarsConfig = {
           "Here are some example ModScripts you can use for inspiration.",
         slug: "/examples",
       },
-      items: [`${examplesFolder}/illuminati-flip`],
+      items: [
+        `${examplesFolder}/illuminati-flip`,
+        `${examplesFolder}/player-proximity-detector`,
+      ],
     },
   ],
 };

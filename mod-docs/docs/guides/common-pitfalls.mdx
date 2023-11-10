@@ -79,4 +79,4 @@ As a n00b programmmer, it's very tempting to ignore error messages like I once d
 
 ## Forgetting to unsubscribe from handlers
 
-This has already been mentioned a lot, but remember to [unsubscribe from all event handlers](/docs/guides/events#unsubscribing-from-events) you subscribe to, usually in the `cleanup` function, to avoid memory leaks and performance issues.
+This has already been mentioned a lot, but remember to [unsubscribe from all event handlers](/docs/guides/events#unsubscribing-from-events) you subscribe to, usually in the `cleanup` function, to avoid memory leaks and performance issues, especially in the Level Builder where you are entering and exiting play mode a lot, and creating a lot of memory leaks.

@@ -1,0 +1,73 @@
+import DocsImage from "@site/src/components/DocsImage";
+
+# Player Proximity Detector
+
+This script gives all enemies anti gravity while they are chasing the player.
+
+```lua
+registerType("Enemy")
+registerType("PlayerProximityDetector")
+registerType("PlayerProximityDetector+ProximityEventEventArgs") -- nested type
+registerType("MemeItem")
+registerType("Rigidbody2D")
+registerType("EventsForModScript")
+
+local worldObj = getCurrentItem().transform.parent
+local enemies = worldObj.GetComponentsInChildren(getType("Enemy"))
+
+local proximityDetectors = {} -- so we can unsubscribe in cleanup even on enemies that were destroyed mid game (where .GetComponent doesn't work)
+local gravityScalesBefore = {} --dictionary where key is id wihtin level and v
+
+function handleProximityEvent(sender, eventArgs)
+    local id = sender.GetComponent("MemeItem").IdWithinLevel
+    local rb = sender.GetComponent("Rigidbody2D")
+    if eventArgs.ProximityEvent == 1 then -- on start chasing
+        gravityScalesBefore[id] = rb.gravityScale
+        rb.gravityScale = -0.169
+    elseif eventArgs.ProximityEvent == 2 then -- on stop chasing
+        if gravityScalesBefore[id] ~= nil then
+            rb.gravityScale = gravityScalesBefore[id]
+        end -- if nil, it hasn't done anti gravity yet before so don't do anything
+    end
+end
+
+
+for i, enemy in ipairs(enemies) do
+    local playerProximityDetector = enemy.GetComponent("PlayerProximityDetector")
+    if playerProximityDetector ~= nil then
+        proximityDetectors[i] = playerProximityDetector
+        playerProximityDetector.ProximityEventTriggered.add(handleProximityEvent)
+    end
+end
+
+
+function cleanup() -- called when exiting the level
+    for i, proxDetec in ipairs(proximityDetectors) do
+        proxDetec.ProximityEventTriggered.remove(handleProximityEvent)
+    end
+end
+```
+
+This might be of use to you:
+
+```csharp
+public enum PlayerProximityEvent
+{
+    None = 0,
+    StartChasing = 1,
+    StopChasing = 2,
+    StartAttacking = 3,
+    StopAttacking = 4,
+    StartAnimating = 5,
+    StopAnimating = 6,
+    StartAudio = 7,
+    StopAudio = 8
+}
+```
+
+...although the same information can be found in the [API reference](/docs/guides/api-reference):
+
+<DocsImage
+  src={require("./img/player proximity event api reference.png").default}
+  width={600}
+/>
