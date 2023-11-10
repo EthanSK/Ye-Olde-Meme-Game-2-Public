@@ -27,19 +27,19 @@ function cleanup()
 end
 ```
 
-All [event handlers](/docs/guides/events) you subscribed to _must_ be unsubscribed to here. If you don't, you will have a memory leak and the game could crash.
+All [event handlers](/docs/guides/events) you subscribed to _must_ be unsubscribed to here. If you don't, you will have a memory leak and the game could lag or crash.
 
 ## Lifecycle Events
 
 All the [lifecycle events](/docs/guides/lifecycle-events) that get called repetedly could start to impact performance if you're not careful.
 
-If you subscribe to a repeated lifecycle event like `OnTriggerEnterEvent` or `update`, etc, and you do some even slightly performance heavy operation, it could start to cause lag, especially if done across multiple ModScripts.
+If you subscribe to a repeating lifecycle event like `OnTriggerEnterEvent` or `update`, etc, and you do some even slightly performance heavy operation, it could start to cause lag, especially if done across multiple ModScripts.
 
-This issue will become especially problematic in very quickly repeating lifecycle events like `update`, `fixedUpdate`, `lateUpdate`, `OnCollisionStayEvent`, `OnTriggerStayEvent`, and all them ones. Be vary careful, and always keep track of your ModScripts
+This issue will become especially problematic in very quickly repeating lifecycle events like `update`, `fixedUpdate`, `lateUpdate`, `OnCollisionStayEvent`, `OnTriggerStayEvent`, and all them ones. Be very careful, and always keep a close eye on potential performance issues.
 
 ## Console Logging
 
-If you log a lot to the console and it's open, it will cause lag, but this is only an issue in the Level Builder, so it will only affect you. Still, be careful.
+If you log a lot to the console and it's open, it will cause lag, but this is only an issue in the Level Builder, so it will only affect you while building your level. Still, be aware of this as a reason for lag - it's not necessarily your fault.
 
 ## It's Up To You
 
