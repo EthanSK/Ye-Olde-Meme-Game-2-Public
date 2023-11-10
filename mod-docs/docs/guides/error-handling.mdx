@@ -15,13 +15,13 @@ This is the console window:
   width={1000}
 />
 
-It's used to log output from the `print` or `printTable` functions in your ModScripts, as well as show error messages.
+It's used to log output from the `print` or `printTable` function in your ModScripts, as well as show error messages.
 
 You can resize it, zoom in and out, clear the output, and close it with the button or the `Esc` key.
 
 You can also click on error messages in the console and it will take you to the correct line in the correct ModScript on the correct MemeItem.
 
-And for you reference, at the start of every log there is the exact time it was logged.
+And for your reference, at the start of every log there is the exact time it was logged.
 
 ## Error messages
 
@@ -31,7 +31,7 @@ Well my friends, that is simply not the case.
 
 Error messages will save you from hours of pain and misery.
 
-And in MoonSharp, the error messages are usually especially clear.
+And in MoonSharp, the error messages are usually quite informative.
 
 Take this erroneous ModScript on a `Health Area` MemeItem:
 
@@ -63,7 +63,7 @@ From right to left, the first useful thing we come across is the ModScript title
 
 Then there's a `chunk_0`. I have no clue how this works, it's just some MoonSharp thing, but it's not really important.
 
-Then there's the line number, which is `4`, and the column range (character position on that line), which is `19-20`.
+Then there's the line number, which is `4`, and the column number/range (character position on that line), which is `19-20`.
 This tells your where exactly in your ModScript the error is.
 
 Then there's the actual error, which in this case is that a closing bracket, `')'`, was expected to close the openining bracket, `'('`, but it couldn't find one. And then just for poos and giggles it says what character it's near too, `'a'`. Great.
@@ -107,5 +107,5 @@ This just means that the error occured in the `poo` function, which was called b
 Here are some implications of errors.
 
 - You can't publish your level until it's free of errors.
-- Tbh, this whole modding system was a complete last minute afterthough for which I had to go on a month long coding bender in order to implement, so a lot of stuff will probably be broken and not work at first, so please cut me some slack and [report the bug](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Public/issues/new/choose) with steps to reproduce. Thanks (also it's technically only supported in `experimental` mode).
+- Tbh, this whole modding system was a complete last minute afterthought for which I had to go on a month long coding bender to implement, so a lot of stuff will probably be broken and not work at first, so please cut me some slack and [report the bug](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Public/issues/new/choose) with steps to reproduce. Thanks (also it's technically only supported in `experimental` mode).
 - It is incredibly important that once you're done, you **test your level in "Play Created Level" mode as the environment differs to the Level Builder, so some things you thought would work will not.** Since there is no console in this mode, you should check the Unity logs file on your computer to see if there are any errors. See the ["Player-related log locations" section of the Unity docs](https://docs.unity3d.com/Manual/LogFiles.html).
