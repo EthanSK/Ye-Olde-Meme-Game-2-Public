@@ -48,7 +48,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: "img/YOMG2SocialCard.png",
     navbar: {
       title: "Ye Olde Meme Game 2",
       logo: {

@@ -58,10 +58,11 @@ const sidebars: SidebarsConfig = {
       link: {
         type: "generated-index",
         title: "Examples",
-        description: "Example ModScripts in Ye Olde Meme Game 2",
+        description:
+          "Here are some example ModScripts you can use for inspiration.",
         slug: "/examples",
       },
-      items: [],
+      items: [`${examplesFolder}/illuminati-flip`],
     },
   ],
 };

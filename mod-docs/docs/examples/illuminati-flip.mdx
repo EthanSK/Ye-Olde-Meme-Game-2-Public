@@ -1,0 +1,30 @@
+# Illuminati Flip
+
+This script flips the Y axis of all Illuminati Sprite Renderers in the level every 0.69/4.20 seconds
+
+```lua
+registerType('SpriteRenderer')
+
+local timeCounter = 0
+local timeInterval = 0.69 /4.20
+local illuminatis = getItemsByMemeId('Illuminati')
+
+local illuminatiSpriteRens = {}
+for i, value in ipairs(illuminatis) do
+	illuminatiSpriteRens[i] = value.GetComponent('SpriteRenderer') -- cache all sprite renderers
+end
+
+function update()
+	timeCounter = timeCounter + Time.deltaTime
+	if timeCounter > timeInterval then
+		timeCounter = 0
+		for i, value in ipairs(illuminatiSpriteRens) do
+			value.flipY = not value.flipY
+		end
+	end
+end
+```
+
+Notice how it just changes the sprite appearance, it doesn't actually flip the entire object, so the colliders stay in place.
+
+A repeated recursive call to `invokeAfterTime` coroutine might have been a better choice here, but this works too and I'm lazy and had this example at hand.
