@@ -6,7 +6,7 @@ In Lua, there is no `new` keyword, so you cannot construct new instances of clas
 
 But on second thought, it's probably fine to do construction of _value types_ (structs), as long as they fall within the [whitelist](/docs/guides/types#whitelist).
 
-So I created a helper function called `createInstance` that takes a [type name](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/specifying-fully-qualified-type-names), and returns a new instance of that type.
+So I created a helper function called `createInstance` that takes a type name, and returns a new instance of that type.
 
 ```lua {3}
 registerType('Player')

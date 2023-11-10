@@ -9,7 +9,7 @@ Coroutines are a way to schedule your code to execute after some time. There are
 
 ## invokeAfterTime
 
-`invokeAfterTime` is used to schedule a function after a specified amount of _in-game_ time. This means that if the `Time.timeScale` was altered to cause slow-motion or speed-up, the coroutine will execute slower or faster respectively.
+`invokeAfterTime` is used to schedule a function after a specified amount of _in-game_ time. This means that if the `Time.timeScale` was altered to cause slow-motion or speed-up, the coroutine will execute after a longer or shorter time respectively.
 
 ```lua {5}
 function someFunction(arg1, arg2)
@@ -30,7 +30,7 @@ function someFunction(arg1, arg2)
     print("someFunction called with args: ", arg1, arg2)
 end
 Time.timeScale = 6.9
-invokeAfterTimeRealtime(4.20, someFunction, {"shekma", "donkey"}) -- executes after 4.20 seconds
+invokeAfterTimeRealtime(4.20, someFunction, {"shrekma", "donkey"}) -- executes after 4.20 seconds
 ```
 
 ## invokeAfterEndOfFrame
@@ -46,7 +46,7 @@ invokeAfterEndOfFrame(someFunction, {8008, "s"}) -- executes at end of frame
 
 ## invokeAfterFixedUpdate
 
-`invokeAfterFixedUpdate` executes the function at the end of the fixed update cycle (which is a physics engine step). This may be useful for doing stuff after all `fixedUpdate` methods have been called, which is when all physics engine stuff is calculated.
+`invokeAfterFixedUpdate` executes the function at the end of the fixed update cycle (which is a physics engine step, happens at 30fps). This may be useful for doing stuff after all `fixedUpdate` methods have been called, which is after all physics engine stuff is calculated.
 
 ```lua {4}
 function someFunction(arg1, arg2)
