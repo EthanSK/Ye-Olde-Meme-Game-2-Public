@@ -4,6 +4,8 @@ Welcome to the public repository for downloading alpha builds of Ye Olde Meme Ga
 
 # Report bugs [here](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Alpha/issues)
 
+# Modding Docs [here](https://mods.yomg2.etggames.com/)
+
 # Download the alpha [here](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Alpha/releases)
 
 
