@@ -60,7 +60,7 @@ local samples = createCollection("System.Single[]", {arrayLength = samplesCount}
 audioSource.clip.GetData(samples, 0);
 
 for i = 0, samples.Length - 1 do
-    local randomFloat = 0.5 + (math.random() * 0.5) -- rand betweer 0.5 and 1
+    local randomFloat = 0.5 + (math.random() * 0.5) -- rand between 0.5 and 1
     samples[i] = samples[i] * randomFloat -- can use square brackets to index C# collections!
 end
 

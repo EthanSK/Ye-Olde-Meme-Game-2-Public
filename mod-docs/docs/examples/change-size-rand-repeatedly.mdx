@@ -1,0 +1,29 @@
+# Change Size Repeatedly
+
+This script repeatedly changes the size of the item to something random between 0.420 and 6.9 every 0.69/3 seconds.
+
+```lua
+registerType("Vector3")
+
+function getRandomNumber(min, max)
+  return math.random() * (max - min) + min
+end
+
+function changeSizeToSmthRand()
+	local transform = getCurrentItem().transform
+	local isFacingBackwards = transform.lossyScale.x < 0
+	local newScale = createInstance("Vector3")
+    	newScale.x, newScale.y, newScale.z = getRandomNumber(0.420, 6.9), getRandomNumber(0.420, 6.9), 1
+	if isFacingBackwards then
+		newScale.x = -newScale.x
+	end
+    	transform.localScale = newScale
+end
+
+function changeSizeOverAndOver()
+	changeSizeToSmthRand()
+	invokeAfterTime(0.69 / 3, changeSizeOverAndOver, {})
+end
+
+changeSizeOverAndOver()
+```

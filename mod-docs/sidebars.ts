@@ -66,6 +66,7 @@ const sidebars: SidebarsConfig = {
         `${examplesFolder}/illuminati-flip`,
         `${examplesFolder}/player-proximity-detector`,
         `${examplesFolder}/change-meme-man-head-scale`,
+        `${examplesFolder}/change-size-rand-repeatedly`,
         `${examplesFolder}/more-to-come`,
       ],
     },
