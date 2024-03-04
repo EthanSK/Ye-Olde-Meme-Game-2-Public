@@ -44,6 +44,17 @@ const config: Config = {
   ],
 
   themeConfig: {
+    algolia: {
+      // The application ID provided by Algolia
+      appId: "XVUY7MAH59",
+
+      // Public API key: it is safe to commit it
+      apiKey: "a2d0f3ba1503949a595c35d7c2cd4549",
+
+      indexName: "mods-yomg2-etggames",
+
+      contextualSearch: true,
+    },
     colorMode: {
       respectPrefersColorScheme: true,
     },
