@@ -53,7 +53,7 @@ const config: Config = {
 
       indexName: "mods-yomg2-etggames",
 
-      contextualSearch: true,
+      contextualSearch: false, //we don't use versions or languages atm, so keep it simple and have it off for now
     },
     colorMode: {
       respectPrefersColorScheme: true,
