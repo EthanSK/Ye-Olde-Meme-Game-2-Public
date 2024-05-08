@@ -1,6 +1,6 @@
 # [Ye Olde Meme Game 2](https://www.etggames.com/ye-olde-meme-game-2)
 
-Welcome to the public repository for Ye Olde Meme Game 2, where you can [report bugs](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Public/issues/new/choose), [submit feature requests](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Public/issues/new/choose), view the [changelog]()
+Welcome to the public repository for Ye Olde Meme Game 2, where you can [report bugs](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Public/issues/new/choose), [submit feature requests](https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Public/issues/new/choose), view the [changelog](CHANGELOG.md)
 
 # [Download the game](https://etggames.itch.io/ye-olde-meme-game-2)
 
