@@ -4,7 +4,6 @@
 
 
 ## [2.0] - 2024-05-08
-
 - bug fixes
 - buffed stonks arrow
 - made coronavirus gun fully auto when held
