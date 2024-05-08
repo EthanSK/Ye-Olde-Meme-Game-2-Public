@@ -4,6 +4,14 @@
 
 
 ## [2.0] - 2024-05-08
+- nothing is new
+
+
+## [2.0] - 2024-05-08
+- improved level 3 campgain
+
+
+## [2.0] - 2024-05-08
 
 - bug fixes
 - buffed stonks arrow
