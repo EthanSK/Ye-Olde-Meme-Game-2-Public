@@ -4,6 +4,10 @@
 
 
 ## [2.0] - 2024-05-08
+- remove ads button android
+
+
+## [2.0] - 2024-05-08
 - nothing is new
 
 
