@@ -6,4 +6,4 @@ Welcome to the public repository for downloading alpha builds of Ye Olde Meme Ga
 
 # Modding Docs [here](https://mods.yomg2.etggames.com/)
 
-![Alt Text](https://yeoldememegame2.blob.core.windows.net/yomg2/store-assets/reachRainbowFrog.gif)
+<img src="https://yeoldememegame2.blob.core.windows.net/yomg2/store-assets/reachRainbowFrog.gif" alt="Reach Rainbow Frog" width="100%"/>
