@@ -2,6 +2,10 @@
 
 ### All the past updates to YOMG2
 
+
+## [2.0] - 2024-05-08
+- stuff
+
 ## [2.0] - 2024-05-08
 
 - bug fixes
