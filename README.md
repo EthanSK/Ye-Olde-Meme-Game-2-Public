@@ -6,6 +6,7 @@ Welcome to the public repository for Ye Olde Meme Game 2, where you can [report 
 
 # [Modding Docs](https://mods.yomg2.etggames.com/)
 
-<img src="https://yeoldememegame2.blob.core.windows.net/yomg2/store-assets/reachRainbowFrog.gif" alt="Reach Rainbow Frog" width="100%"/>
+## <img src="https://yeoldememegame2.blob.core.windows.net/yomg2/store-assets/reachRainbowFrog.gif" alt="Reach Rainbow Frog" width="100%"/>
+
 <img src="https://yeoldememegame2.blob.core.windows.net/yomg2/store-assets/madFighting.gif" alt="Mad Fighting" width="100%"/>
 <img src="https://yeoldememegame2.blob.core.windows.net/yomg2/store-assets/browseLevels.gif" alt="Browse Levels" width="100%"/>
