@@ -3,6 +3,10 @@
 ### All the past updates to YOMG2
 
 
+## [2.2] - 2024-05-09
+- more juicy bug fixes
+
+
 ## [2.1] - 2024-05-09
 - fixed sharing violation path for slow internet when loading a level due to double thumbnail downloading to same file at bloody once why is the internet so bloody slow rn here even my bloody hotspot
 
