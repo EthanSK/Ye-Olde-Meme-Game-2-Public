@@ -3,6 +3,11 @@
 ### All the past updates to YOMG2
 
 
+## [2.4] - 2024-05-10
+- fixed bug with pro stand not behaving correctly with waypoint system as a moving platform
+- other small bug fixes and improvements
+
+
 ## [2.3] - 2024-05-09
 - le bug fixes
 
