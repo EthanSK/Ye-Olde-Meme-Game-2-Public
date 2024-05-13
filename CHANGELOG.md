@@ -3,6 +3,13 @@
 ### All the past updates to YOMG2
 
 
+## [2.5] - 2024-05-13
+- on mobile, show deselect tooltip when item is selected so ppl know how
+- fixed issue with getting banned for no reason
+- fixed issue with spline terrains eg rainbow floor not rendering if gameobject position is too far eg on level a93-850-4ef.
+- added average time taken to level preview and level info menu
+
+
 ## [2.4] - 2024-05-10
 - fixed bug with pro stand not behaving correctly with waypoint system as a moving platform
 - other small bug fixes and improvements
