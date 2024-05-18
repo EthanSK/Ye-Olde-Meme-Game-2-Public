@@ -3,6 +3,10 @@
 ### All the past updates to YOMG2
 
 
+## [2.6] - 2024-05-18
+- Fixed a bug with mods that have a 'print' function call. Only happens when playing in play mode and not in the level builder.
+
+
 ## [2.5] - 2024-05-13
 - on mobile, show deselect tooltip when item is selected so ppl know how
 - fixed issue with getting banned for no reason
