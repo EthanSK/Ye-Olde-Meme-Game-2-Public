@@ -4,11 +4,7 @@
 
 
 ## [2.7] - 2024-05-24
-- Request app store and play store review after a few times of playing the game. Let us obtain this bread. v3
-
-
-## [2.7] - 2024-05-24
-- Request app store and play store review after a few times of playing the game. Let us obtain this bread. v3
+- Request app store and play store review after a few times of playing the game. Let us obtain this bread. v4
 
 
 ## [2.6] - 2024-05-18
