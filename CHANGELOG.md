@@ -3,6 +3,10 @@
 ### All the past updates to YOMG2
 
 
+## [2.8] - 2024-05-24
+- Request app store and play store review after a few times of playing the game. Let us obtain this bread. v2
+
+
 ## [2.7] - 2024-05-24
 - Request app store and play store review after a few times of playing the game. Let us obtain this bread.
 
