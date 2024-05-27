@@ -3,6 +3,10 @@
 ### All the past updates to YOMG2
 
 
+## [2.8] - 2024-05-27
+- fixed crashing when scrolling too far on browse levels page due to too much memory usage from loading thumbnails. It compresses them now.
+
+
 ## [2.7] - 2024-05-24
 - Request app store and play store review after a few times of playing the game. Let us obtain this bread. v4
 
