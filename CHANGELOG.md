@@ -3,6 +3,11 @@
 ### All the past updates to YOMG2
 
 
+## [2.9] - 2024-06-07
+- consolidated edited and created levels into one menu with a filter. most ppl prolly don't care about the separation.
+- added pluto planet as meme item
+
+
 ## [2.8] - 2024-05-27
 - fixed crashing when scrolling too far on browse levels page due to too much memory usage from loading thumbnails. It compresses them now.
 
