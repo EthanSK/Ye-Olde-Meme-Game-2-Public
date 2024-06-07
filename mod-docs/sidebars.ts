@@ -67,6 +67,7 @@ const sidebars: SidebarsConfig = {
         `${examplesFolder}/player-proximity-detector`,
         `${examplesFolder}/change-meme-man-head-scale`,
         `${examplesFolder}/change-size-rand-repeatedly`,
+        `${examplesFolder}/spline-terrain-image-swap`,
         `${examplesFolder}/more-to-come`,
       ],
     },

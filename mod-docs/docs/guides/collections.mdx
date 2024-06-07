@@ -1,5 +1,9 @@
 # Collections
 
+:::danger
+Avoid using `createCollection` at all costs. Full explanation at the end.
+:::
+
 A collection is just a group of data, like a list of numbers, or a dictionary of strings. MoonSharp automatically converts some commonly used C# collections into Lua tables, and vice versa.
 
 This can be quite nice, since you can deal with collections entirely in the Lua paradigm, instead of needing to work with C# stuff directly.
@@ -10,7 +14,14 @@ For example, in this snippet:
 local illuminatis = getItemsByMemeId("Illuminati") -- illuminatis is a table
 ```
 
-the `getItemsByMemeId` function has been implemented on the C# side to return a `List<GameObject>`, which is a C# `collection`. Then it automatically gets converted to a `table` in your ModScript, and now you can use Lua's `ipairs` to loop through it.
+the `getItemsByMemeId` function has been implemented on the C# side to return a `List<GameObject>`, which is a C# `collection`. Then it automatically gets converted to a Lua `table` in your ModScript, and now you can use Lua's `ipairs` to loop through it.
+
+<u>
+  <b>
+    You should stick to Lua tables wherever possible to avoid breaking other
+    ModScripts
+  </b>
+</u>
 
 However, there can be problems with these tables in some cases.
 
@@ -67,19 +78,19 @@ end
 audioSource.clip.SetData(samples, 0); -- ruins the audio, this is just an example
 ```
 
-:::tip
+:::itip
 Remember, C# collections used 0-based indexing, and Lua tables are 1-based, so in a C# collection the first element will be at index 0.
 :::
 
-:::warning
-There is a caveat to using `createCollection`: after you do this once, MoonSharp will no longer automatically convert a collection of that type to a table. Instead it will just return a reference to the C# collection object. And that happens to all ModScript code everywhere that executes after `createCollection` was called.
+:::danger
+The reason to not use `createCollection`: after you do this once, MoonSharp will no longer automatically convert a collection of a specified type into a Lua table. Instead it will just return a direct reference to the C# collection object. And that happens to all ModScript code everywhere that executes after `createCollection` was called, even if it's not related. So it could interfere with any other ModScript in the level, potentially breaking it.
 
 <details>
 <summary>Why?</summary>
 
-Because `createCollection` needs to (interally) call `registerType` with the provided type, and registering types is global. You could just call `registerType` and pass the C# collection type yourself at the very start, if you want more consistent behaviour from the get-go, but that's up to you.
+Because `createCollection` needs to (interally) call `registerType` with the provided type, and registering types is global. You could just call `registerType` and pass the C# collection type yourself at the very start, if you want more consistent behaviour from the get-go.
 
-Or better you could set the execution order of your scripts with `createCollection` to something higher than everything else, so it runs afte and doesn't affect them.
+Or better you could set the execution order of your scripts with `createCollection` to something higher than everything else, so it runs after and doesn't affect them, but this is not foolproof and will likely cause issues for other people who want to use your ModScripts in their levels.
 
 It is a bit annoying, but there's not much I can do about it. At least it probably won't be a problem most of the time - I don't know why you'd need to create a collection of GameObjects for any Unity methods (which would cause the return type of `getItemsByMemeId` to change to List). Coz remember, this only affects the specific type of collection you are creating.
 
