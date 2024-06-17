@@ -3,6 +3,10 @@
 ### All the past updates to YOMG2
 
 
+## [2.10] - 2024-06-15
+- Added etc2 texture compression for hopefully less memory usage and fewer crashes
+
+
 ## [2.9] - 2024-06-07
 - consolidated edited and created levels into one menu with a filter. most ppl prolly don't care about the separation.
 - added pluto planet as meme item
