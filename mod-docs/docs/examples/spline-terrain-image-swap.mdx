@@ -7,14 +7,14 @@ Put it only any spline terrain floor.
 ```lua
 registerType("UnityEngine.U2D.SpriteShapeController")
 registerType("SpriteShapeLevelBuilder")
-registerType("UnityEngine.U2D.Animation.SpriteSkin") -- whitelisted in version 3.0
+registerType("UnityEngine.U2D.Animation.SpriteSkin") -- only whitelisted in version 3.0+
 registerType("SpriteRenderer")
 registerType("UnityEngine.U2D.SpriteShape")
 registerType("UnityEngine.U2D.AngleRange")
 
 local spriteShapeController = getCurrentItem().GetComponent("SpriteShapeLevelBuilder").SpriteShapeController
 
-local newSpriteShape = UnityObject.Instantiate(spriteShapeController.spriteShape) -- rereate it so it doesnt modify the prefab and effect everyting
+local newSpriteShape = UnityObject.Instantiate(spriteShapeController.spriteShape) -- recreate it so it doesnt modify the prefab and effect everyting
 
 local memeorangMan = getItemsByMemeId("MemeorangMan")[1]
 

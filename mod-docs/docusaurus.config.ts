@@ -4,7 +4,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Ye Olde Meme Game 2 ModScripting",
-  tagline: "The definitive guide for modding in Ye Olde Meme Game 2",
+  tagline: "The definitive guide for modding Ye Olde Meme Game 2",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
