@@ -3,6 +3,15 @@
 ### All the past updates to YOMG2
 
 
+## [2.11] - 2026-05-25
+- Bug fixes
+- Improved modscript error messages
+- Improved sprite shape max size limits
+- Copypaste keyboard now copies existing modscripts on memeorang man
+- Added changelog button to main menu
+- Support for waypoint system while parented to other objects
+
+
 ## [2.10] - 2024-06-15
 - Added etc2 texture compression for hopefully less memory usage and fewer crashes
 
