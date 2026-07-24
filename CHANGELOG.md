@@ -3,6 +3,10 @@
 ### All the past updates to YOMG2
 
 
+## [2.12] - 2026-07-24
+- Fixed profile loading failures that could occur after login
+
+
 ## [2.11] - 2026-05-25
 - Bug fixes
 - Improved modscript error messages
