@@ -3,6 +3,12 @@
 ### All the past updates to YOMG2
 
 
+## [2.13] - 2026-09-08
+- Improved menu input for AI computer use on macOS
+- Fixed modscript text not updating on screen after typing
+- Updated to Unity 6.6
+
+
 ## [2.12] - 2026-07-24
 - Fixed profile loading failures that could occur after login
 
