@@ -3,6 +3,10 @@
 ### All the past updates to YOMG2
 
 
+## [2.14] - 2026-09-15
+- Fixed Browse Levels scrolling back to the top
+
+
 ## [2.13] - 2026-09-08
 - Improved menu input for AI computer use on macOS
 - Fixed modscript text not updating on screen after typing
