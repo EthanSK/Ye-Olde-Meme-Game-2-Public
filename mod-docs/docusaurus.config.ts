@@ -113,6 +113,10 @@ const config: Config = {
           title: "More",
           items: [
             {
+              label: "Ethan’s setup",
+              href: "https://ethansk.github.io/ethan-setup/",
+            },
+            {
               label: "GitHub",
               href: "https://github.com/EthanSK/Ye-Olde-Meme-Game-2-Public",
             },
